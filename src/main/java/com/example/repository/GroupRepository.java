@@ -8,17 +8,18 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Optional;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
-    @Override
     @EntityGraph(
             type = EntityGraph.EntityGraphType.LOAD,
             value = "group-with-teachers-students-subjects"
     )
+    @Query(value = "select g from Group g where g.id = ?1")
     Optional<Group> findById(Long id);
 
     @EntityGraph(
             type = EntityGraph.EntityGraphType.LOAD,
-            attributePaths = {"teachers", "students", "subjects"}
+            attributePaths = {"teachers", "students", "subject"}
     )
+    @Query(value = "select g from Group g where g.name = ?1")
     Optional<Group> findByName(String name);
 
     @Query("select case when count(g) > 0 then true else false end from Group g where g.name = ?1")

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,8 +19,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,12 +49,12 @@ public class Role {
     })
     private List<Authority> authorities = new ArrayList<>();
 
-    public void setName(String name) {
-        this.name = name;
+    public List<SimpleGrantedAuthority> getAuthorities() {
+        return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
     }
 
-    public void setAuthorities(List<Authority> authorities) {
-        this.authorities = authorities;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
