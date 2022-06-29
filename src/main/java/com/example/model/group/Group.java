@@ -30,12 +30,7 @@ import java.util.Objects;
 @Getter
 @Entity
 @Table(name = "groups")
-@NamedEntityGraphs({
-        @NamedEntityGraph(
-                name = "group-with-teachers",
-                attributeNodes = {@NamedAttributeNode(value = "teachers", subgraph = "teachers.salaries")},
-                subgraphs = {@NamedSubgraph(name = "teachers.salaries", attributeNodes = @NamedAttributeNode(value = "salaries"))}
-        ),
+@NamedEntityGraphs(
         @NamedEntityGraph(
                 name = "group-with-teachers-students-subjects",
                 attributeNodes = {
@@ -48,7 +43,7 @@ import java.util.Objects;
                         @NamedSubgraph(name = "students.marks", attributeNodes = {@NamedAttributeNode(value = "marks")})
                 }
         )
-})
+)
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -7,8 +7,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -53,7 +53,7 @@ public class UserSecurity implements UserDetails {
     }
 
     public static UserDetails convertPersonToUserDetails(String login, String password, List<Role> roles) {
-        List<SimpleGrantedAuthority> allAdminAuthorities = new LinkedList<>();
+        List<SimpleGrantedAuthority> allAdminAuthorities = new ArrayList<>();
         roles.forEach(role -> allAdminAuthorities.addAll(role.getAuthorities()));
         return new User(login, password, true, true, true, true, allAdminAuthorities);
     }
