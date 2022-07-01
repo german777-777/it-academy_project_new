@@ -17,7 +17,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
     @EntityGraph(
             type = EntityGraph.EntityGraphType.LOAD,
-            attributePaths = {"teachers", "students", "subject"}
+            attributePaths = {"teachers", "students", "subjects"}
     )
     @Query(value = "select g from Group g where g.name = ?1")
     Optional<Group> findByName(String name);

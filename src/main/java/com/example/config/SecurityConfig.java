@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
     private static final String[] PUBLIC_URLS = {
-            "api/system/**",
+            "/api/system/**",
             "/swagger-ui/**",
             "/v2/api-docs/**",
             "/v3/api-docs/**",

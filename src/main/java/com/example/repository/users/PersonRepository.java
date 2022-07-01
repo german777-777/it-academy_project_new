@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Optional;
 
-public interface PersonRepository<T extends Person> extends JpaRepository<T, Long> {
+public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("select case when count(p) > 0 then true else false end from Person p where p.credentials.login = ?1 or p.credentials.password = ?2")
     Boolean ifExistsByLoginOrPassword(String login, String password);
 

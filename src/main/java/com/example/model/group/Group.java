@@ -103,6 +103,30 @@ public class Group {
         this.subjects = subjects;
     }
 
+    public void addTeacher(Teacher teacher) {
+        this.teachers.add(teacher);
+    }
+
+    public void addStudent(Student student) {
+        this.students.add(student);
+    }
+
+    public void addSubject(Subject subject) {
+        this.subjects.add(subject);
+    }
+
+    public void removeTeacher(Teacher teacher) {
+        this.teachers.remove(teacher);
+    }
+
+    public void removeStudent(Student student) {
+        this.students.remove(student);
+    }
+
+    public void removeSubject(Subject subject) {
+        this.subjects.remove(subject);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

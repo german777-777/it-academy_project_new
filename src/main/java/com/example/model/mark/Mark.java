@@ -66,6 +66,6 @@ public class Mark {
 
     @Override
     public String toString() {
-        return "[ID: " + id + ", subject: " + subject + ", date of issue: " + dateOfIssue + ", count: " + count + "]";
+        return "[ID: " + id + ", subjects: " + subject + ", date of issue: " + dateOfIssue + ", count: " + count + "]";
     }
 }

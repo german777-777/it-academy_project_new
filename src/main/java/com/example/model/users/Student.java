@@ -29,6 +29,10 @@ public class Student extends Person {
     })
     private List<Mark> marks = new LinkedList<>();
 
+    public void addMark(Mark mark) {
+        this.marks.add(mark);
+    }
+
     @Override
     public boolean equals(Object o) {
         return super.equals(o);

@@ -1,23 +1,16 @@
 package com.example.service.users;
 
 import com.example.model.users.Person;
-import com.example.model.users.Student;
-import com.example.model.users.Teacher;
+import com.example.service.users.student.StudentService;
+import com.example.service.users.teacher.TeacherService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.List;
+public interface PersonService extends TeacherService, StudentService, UserDetailsService {
+    boolean save(Person person);
 
-public interface PersonService<T extends Person> extends UserDetailsService {
-    boolean save(T person);
+    Person findByLoginAndPassword(String login, String password);
 
-    Student findStudentById(Long id);
-    Teacher findTeacherById(Long id);
+    boolean update(Person oldPerson, Person newPerson);
 
-    T findByLoginAndPassword(String login, String password);
-
-    List<Student> findAllStudents();
-    List<Teacher> findAllTeachers();
-
-    boolean update(T oldPerson, T newPerson);
     boolean delete(Long id);
 }

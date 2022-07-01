@@ -29,6 +29,10 @@ public class Teacher extends Person {
     })
     private List<Salary> salaries = new LinkedList<>();
 
+    public void addSalary(Salary salary) {
+        this.salaries.add(salary);
+    }
+
     @Override
     public boolean equals(Object o) {
         return super.equals(o);

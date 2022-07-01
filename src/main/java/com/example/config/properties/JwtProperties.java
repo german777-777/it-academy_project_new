@@ -2,11 +2,11 @@ package com.example.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(value = "jwt.token")
+@ConfigurationProperties(prefix = "jwt.token")
 public class JwtProperties {
 
-    private String secret;
-    private long expired;
+    private String secret = "secret";
+    private Long expired = 60000L;
     private String header;
 
     public String getSecret() {
@@ -21,7 +21,7 @@ public class JwtProperties {
         return expired;
     }
 
-    public void setExpired(long expired) {
+    public void setExpired(Long expired) {
         this.expired = expired;
     }
 

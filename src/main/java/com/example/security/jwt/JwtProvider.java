@@ -1,7 +1,6 @@
 package com.example.security.jwt;
 
 import com.example.exceptions.JwtAuthenticationException;
-import com.example.model.users.Person;
 import com.example.model.users.roles.Role;
 import com.example.service.users.PersonService;
 import io.jsonwebtoken.Claims;
@@ -26,7 +25,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-    private final PersonService<Person> personService;
+    private final PersonService personService;
 
     @Value("${jwt.token.secret}")
     private String secret;
