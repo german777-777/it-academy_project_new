@@ -1,6 +1,7 @@
 package com.example.config;
 
 import com.example.security.jwt.JwtConfigurer;
+import com.example.security.manager.CommonAuthenticationManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,7 @@ public class SecurityConfig {
             "/webjars/**"
     };
     private final JwtConfigurer configurer;
+    private final CommonAuthenticationManager authenticationManager;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -33,6 +35,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+                .authenticationManager(authenticationManager)
                 .authorizeRequests().antMatchers(PUBLIC_URLS).permitAll()
                 .anyRequest().authenticated()
                 .and()

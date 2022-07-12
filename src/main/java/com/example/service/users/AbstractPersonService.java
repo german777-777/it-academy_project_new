@@ -33,21 +33,21 @@ public abstract class AbstractPersonService implements PersonService {
             throw new CreateEntityException("Некорректные данные пользователя!");
         }
 
-        String newPersonLogin = person.getCredentials().getLogin();
-        String newPersonPassword = passwordEncoder.encode(person.getCredentials().getPassword());
+        String newPersonLogin = person.getLogin();
+        String newPersonPassword = passwordEncoder.encode(person.getPassword());
 
         if (personRepository.ifExistsByLoginOrPassword(newPersonLogin, newPersonPassword)) {
             throw new CreateEntityException("Пользователь с введёнными логином и паролем уже существует!");
         }
 
-        person.getCredentials().setPassword(newPersonPassword);
+        person.setPassword(newPersonPassword);
 
         return setRolesToPersonAndSave(person);
     }
 
     @Override
-    public Person findByLoginAndPassword(String login, String password) {
-        return personRepository.findByLoginAndPassword(login, passwordEncoder.encode(password)).orElseThrow(() -> new NotFoundEntityException("Пользователь не найден по логину и паролю!"));
+    public Person findByLogin(String login) {
+        return personRepository.findByLogin(login).orElseThrow(() -> new NotFoundEntityException("Пользователь не найден по логину!"));
     }
 
     @Override
@@ -56,8 +56,8 @@ public abstract class AbstractPersonService implements PersonService {
             throw new UpdateEntityException("Некорректные данные: старый пользователь не найден!");
         }
 
-        String newAdminLogin = newPerson.getCredentials().getLogin();
-        String newAdminPassword = newPerson.getCredentials().getPassword();
+        String newAdminLogin = newPerson.getLogin();
+        String newAdminPassword = newPerson.getPassword();
 
         if (newAdminLogin != null && newAdminPassword != null) {
             if (personRepository.ifExistsByLoginOrPassword(newAdminLogin, passwordEncoder.encode(newAdminPassword))) {
@@ -86,7 +86,7 @@ public abstract class AbstractPersonService implements PersonService {
             throw new UsernameNotFoundException("Пользователь не найден по логину!");
         }
         Person person = personOptional.get();
-        return UserSecurity.convertPersonToUserDetails(person.getCredentials().getLogin(), person.getCredentials().getPassword(), person.getRoles());
+        return UserSecurity.convertPersonToUserDetails(person.getLogin(), person.getPassword(), person.getRoles());
     }
 
     private boolean setRolesToPersonAndSave(Person person) {
@@ -130,8 +130,8 @@ public abstract class AbstractPersonService implements PersonService {
         String newLastName = newPerson.getLastName();
         String newPatronymic = newPerson.getPatronymic();
         LocalDate newBirthDate = newPerson.getBirthDate();
-        String newLogin = newPerson.getCredentials().getLogin();
-        String newPassword = newPerson.getCredentials().getPassword();
+        String newLogin = newPerson.getLogin();
+        String newPassword = newPerson.getPassword();
 
         if (newFirstName != null) {
             oldPerson.setFirstName(newFirstName);

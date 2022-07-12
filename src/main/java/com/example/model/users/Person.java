@@ -74,6 +74,22 @@ public abstract class Person {
         this.birthDate = birthDate;
     }
 
+    public String getLogin() {
+        return this.credentials.getLogin();
+    }
+
+    public String getPassword() {
+        return this.credentials.getPassword();
+    }
+
+    public void setLogin(String login) {
+        this.credentials.setLogin(login);
+    }
+
+    public void setPassword(String password) {
+        this.credentials.setPassword(password);
+    }
+
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }

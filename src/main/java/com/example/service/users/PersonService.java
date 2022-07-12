@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface PersonService extends TeacherService, StudentService, UserDetailsService {
     boolean save(Person person);
 
-    Person findByLoginAndPassword(String login, String password);
+    Person findByLogin(String login);
 
     boolean update(Person oldPerson, Person newPerson);
 
