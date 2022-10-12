@@ -5,7 +5,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-        <changeSet id="create users_roles table" author="German">
+        <changeSet id="V5__create_users_roles_table" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <not>
+                    <tableExists tableName="users_roles"/>
+                </not>
+                <and>
+                    <tableExists tableName="users"/>
+                </and>
+                <and>
+                    <tableExists tableName="roles"/>
+                </and>
+            </preConditions>
+
             <createTable tableName="users_roles">
                 <column name="user_id" type="bigint">
                     <constraints nullable="false"/>

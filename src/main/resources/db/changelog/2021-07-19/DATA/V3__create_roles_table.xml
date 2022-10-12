@@ -5,13 +5,23 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="create roles table" author="German">
+    <changeSet id="V3__create_roles_table" author="German Pisarev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="roles"/>
+            </not>
+        </preConditions>
+
         <createTable tableName="roles">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints unique="true" nullable="true" uniqueConstraintName="unique__pkey__roles" primaryKey="true" primaryKeyName="pkey__roles"/>
+                <constraints uniqueConstraintName="unique__pkey__roles"
+                             primaryKey="true"
+                             primaryKeyName="pkey__roles"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints unique="true" nullable="false" uniqueConstraintName="unique__name__roles"/>
+                <constraints unique="true"
+                             nullable="false"
+                             uniqueConstraintName="unique__name__roles"/>
             </column>
         </createTable>
     </changeSet>

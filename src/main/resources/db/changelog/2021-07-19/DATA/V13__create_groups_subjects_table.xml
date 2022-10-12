@@ -5,7 +5,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="create groups_subjects table" author="German">
+    <changeSet id="V13__create_groups_subjects_table" author="German Pisarev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="groups_subjects"/>
+            </not>
+            <and>
+                <tableExists tableName="groups"/>
+            </and>
+            <and>
+                <tableExists tableName="subjects"/>
+            </and>
+        </preConditions>
+
         <createTable tableName="groups_subjects">
             <column name="group_id" type="bigint">
                 <constraints nullable="false"/>

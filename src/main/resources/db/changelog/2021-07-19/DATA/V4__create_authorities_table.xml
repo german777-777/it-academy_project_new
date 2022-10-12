@@ -5,13 +5,23 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="create authorities table" author="German">
+    <changeSet id="V4__create_authorities_table" author="German Pisarev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="authorities"/>
+            </not>
+        </preConditions>
+
         <createTable tableName="authorities">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints unique="true" nullable="true" uniqueConstraintName="unique__pkey__authorities" primaryKey="true" primaryKeyName="pkey__authorities"/>
+                <constraints uniqueConstraintName="unique__pkey__authorities"
+                             primaryKey="true"
+                             primaryKeyName="pkey__authorities"/>
             </column>
             <column name="name" type="varchar(255)">
-                <constraints unique="true" nullable="false" uniqueConstraintName="unique__name__authorities"/>
+                <constraints unique="true"
+                             nullable="false"
+                             uniqueConstraintName="unique__name__authorities"/>
             </column>
         </createTable>
     </changeSet>

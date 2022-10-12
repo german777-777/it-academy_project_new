@@ -5,13 +5,23 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-        <changeSet id="create subjects table" author="German">
+        <changeSet id="V7__create_subjects_table" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <not>
+                    <tableExists tableName="subjects"/>
+                </not>
+            </preConditions>
+
             <createTable tableName="subjects">
                 <column name="id" type="bigint" autoIncrement="true">
-                    <constraints unique="true" nullable="false" primaryKey="true" uniqueConstraintName="unique__pkey__subjects" primaryKeyName="pkey__subjects"/>
+                    <constraints primaryKey="true"
+                                 uniqueConstraintName="unique__pkey__subjects"
+                                 primaryKeyName="pkey__subjects"/>
                 </column>
                 <column name="name" type="varchar(255)">
-                    <constraints unique="true" nullable="false" uniqueConstraintName="unique__name__subjects"/>
+                    <constraints unique="true"
+                                 nullable="false"
+                                 uniqueConstraintName="unique__name__subjects"/>
                 </column>
             </createTable>
         </changeSet>

@@ -5,10 +5,21 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-    <changeSet id="create users table" author="German">
+    <changeSet id="V2__create_users_table" author="German Pisarev">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+            <and>
+                <tableExists tableName="credentials"/>
+            </and>
+        </preConditions>
+
         <createTable tableName="users">
             <column name="id" type="bigint" autoIncrement="true">
-                <constraints unique="true" primaryKey="true" nullable="false" uniqueConstraintName="unique__pkey__users" primaryKeyName="pkey__users"/>
+                <constraints primaryKey="true"
+                             uniqueConstraintName="unique__pkey__users"
+                             primaryKeyName="pkey__users"/>
             </column>
             <column name="first_name" type="varchar(255)">
                 <constraints nullable="false"/>
@@ -23,7 +34,9 @@
                 <constraints nullable="false"/>
             </column>
             <column name="credential_id" type="bigint">
-                <constraints unique="true" nullable="false" uniqueConstraintName="unique__fkey__credentials"/>
+                <constraints unique="true"
+                             nullable="false"
+                             uniqueConstraintName="unique__fkey__credentials"/>
             </column>
         </createTable>
         

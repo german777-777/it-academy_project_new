@@ -5,10 +5,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
 
-        <changeSet id="create marks table" author="German">
+        <changeSet id="V8__create_marks_table" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <not>
+                    <tableExists tableName="marks"/>
+                </not>
+                <and>
+                    <tableExists tableName="users"/>
+                </and>
+                <and>
+                    <tableExists tableName="subjects"/>
+                </and>
+            </preConditions>
+
             <createTable tableName="marks">
                 <column name="id" type="bigint" autoIncrement="true">
-                    <constraints unique="true" nullable="false" primaryKey="true" uniqueConstraintName="unique__pkey__marks" primaryKeyName="pkey__marks"/>
+                    <constraints primaryKey="true"
+                                 uniqueConstraintName="unique__pkey__marks"
+                                 primaryKeyName="pkey__marks"/>
                 </column>
                 <column name="subject_id" type="bigint">
                     <constraints nullable="false"/>
