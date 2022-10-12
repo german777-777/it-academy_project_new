@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query("select case when count(p) > 0 then true else false end from Person p where p.credentials.login = ?1 or p.credentials.password = ?2")
-    Boolean ifExistsByLoginOrPassword(String login, String password);
+    boolean ifExistsByLoginOrPassword(String login, String password);
 
     @Query("select p from Person p where p.credentials.login = ?1")
     Optional<Person> findByLogin(String login);

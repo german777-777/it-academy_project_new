@@ -28,6 +28,11 @@ public class Credentials {
     private String login;
     private String password;
 
+    public Credentials(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "[ID: " + id + ", login: " + login + ", password: " + password + "]";

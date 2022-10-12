@@ -1,7 +1,7 @@
 package com.example.controllers.system;
 
-import com.example.dto.credentials.CredentialsDto;
-import com.example.dto.user.PersonDto;
+import com.example.dto.credentials.CredentialsRequestDto;
+import com.example.dto.user.RegistrationRequestDto;
 import com.example.model.users.Person;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
@@ -24,23 +24,23 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/system")
 @RequiredArgsConstructor
-public class RegistrationController {
+public class SystemController {
     private final PersonService personService;
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
     @PostMapping("/registration")
-    public ResponseEntity<String> registration(@RequestBody PersonDto personDto) {
-        if (personService.save(PersonDto.convertToPerson(personDto))) {
+    public ResponseEntity<String> registration(@RequestBody RegistrationRequestDto personDto) {
+        if (personService.save(RegistrationRequestDto.convertToPerson(personDto))) {
             return new ResponseEntity<>("Регистрация прошла успешно!", HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Ошибка сервера! Регистрация прошла неуспешно!", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody CredentialsDto credentialsDto) {
-        String login = credentialsDto.getLogin();
-        String password = credentialsDto.getPassword();
+    public ResponseEntity<Map<String, String>> login(@RequestBody CredentialsRequestDto credentialsDto) {
+        String login = credentialsDto.login();
+        String password = credentialsDto.password();
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
         Person person = personService.findByLogin(login);
@@ -51,7 +51,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, null);
 
