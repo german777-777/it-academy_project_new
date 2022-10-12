@@ -1,7 +1,7 @@
 package com.example.model.users;
 
 import com.example.model.salary.Salary;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import java.util.LinkedList;
 import java.util.List;
 
-@Getter
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @NamedEntityGraph(
         name = "teacher-with-salaries",
@@ -31,16 +31,6 @@ public class Teacher extends Person {
 
     public void addSalary(Salary salary) {
         this.salaries.add(salary);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        return super.hashCode();
     }
 
     @Override

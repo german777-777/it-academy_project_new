@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,11 +24,14 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "marks")
 public class Mark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @OneToOne(optional = false)
@@ -38,31 +43,6 @@ public class Mark {
     private LocalDate dateOfIssue;
 
     private int count;
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public void setDateOfIssue(LocalDate dateOfIssue) {
-        this.dateOfIssue = dateOfIssue;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mark mark = (Mark) o;
-        return count == mark.count && id.equals(mark.id) && subject.equals(mark.subject) && dateOfIssue.equals(mark.dateOfIssue);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, subject, dateOfIssue, count);
-    }
 
     @Override
     public String toString() {

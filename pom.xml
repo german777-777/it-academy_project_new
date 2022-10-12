@@ -8,14 +8,18 @@
         <version>2.7.1</version>
         <relativePath/>
     </parent>
+
     <groupId>com.example</groupId>
     <artifactId>it-academy_project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>it-academy_project</name>
-    <description>it-academy_project</description>
+    <description>IT-Academy Project</description>
+
     <properties>
         <java.version>11</java.version>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -33,7 +37,6 @@
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
