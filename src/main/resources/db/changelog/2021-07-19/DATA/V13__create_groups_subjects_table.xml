@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create groups_subjects table" author="German">
+        <createTable tableName="groups_subjects">
+            <column name="group_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="groups_subjects" baseColumnNames="subject_id"
+                                 constraintName="subjects__groups__fkey"
+                                 referencedTableName="subjects"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="groups_subjects" baseColumnNames="group_id"
+                                 constraintName="groups__subjects__fkey"
+                                 referencedTableName="groups"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

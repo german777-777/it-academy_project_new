@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="create marks table" author="German">
+            <createTable tableName="marks">
+                <column name="id" type="bigint" autoIncrement="true">
+                    <constraints unique="true" nullable="false" primaryKey="true" uniqueConstraintName="unique__pkey__marks" primaryKeyName="pkey__marks"/>
+                </column>
+                <column name="subject_id" type="bigint">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="student_id" type="bigint">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="date_of_issue" type="date">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="count" type="int">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+
+            <addForeignKeyConstraint baseTableName="marks" baseColumnNames="subject_id"
+                                     constraintName="marks__subjects__fkey"
+                                     referencedTableName="subjects"
+                                     referencedColumnNames="id"/>
+
+            <addForeignKeyConstraint baseTableName="marks" baseColumnNames="student_id"
+                                     constraintName="marks__users__fkey"
+                                     referencedTableName="users"
+                                     referencedColumnNames="id"/>
+        </changeSet>
+
+</databaseChangeLog>

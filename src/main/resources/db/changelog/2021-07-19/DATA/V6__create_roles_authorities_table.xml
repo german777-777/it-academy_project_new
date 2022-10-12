@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="create roles_authorities table" author="German">
+            <createTable tableName="roles_authorities">
+                <column name="role_id" type="bigint">
+                    <constraints nullable="false"/>
+                </column>
+                <column name="authority_id" type="bigint">
+                    <constraints nullable="false"/>
+                </column>
+            </createTable>
+
+            <addForeignKeyConstraint baseTableName="roles_authorities" baseColumnNames="role_id"
+                                     constraintName="roles__authorities__fkey"
+                                     referencedTableName="roles"
+                                     referencedColumnNames="id"/>
+
+            <addForeignKeyConstraint baseTableName="roles_authorities" baseColumnNames="authority_id"
+                                     constraintName="authorities__roles__fkey"
+                                     referencedTableName="authorities"
+                                     referencedColumnNames="id"/>
+        </changeSet>
+</databaseChangeLog>

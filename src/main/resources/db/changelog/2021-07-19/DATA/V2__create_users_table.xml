@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="create users table" author="German">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints unique="true" primaryKey="true" nullable="false" uniqueConstraintName="unique__pkey__users" primaryKeyName="pkey__users"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credential_id" type="bigint">
+                <constraints unique="true" nullable="false" uniqueConstraintName="unique__fkey__credentials"/>
+            </column>
+        </createTable>
+        
+        <addForeignKeyConstraint baseTableName="users" baseColumnNames="credential_id" constraintName="users__credentials__fkey"
+                                 referencedTableName="credentials"
+                                 referencedColumnNames="id" onDelete="CASCADE" onUpdate="CASCADE"/>
+
+    </changeSet>
+</databaseChangeLog>
