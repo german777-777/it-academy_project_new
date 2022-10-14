@@ -51,7 +51,7 @@ public class Role {
     private List<Authority> authorities = new ArrayList<>();
 
     public List<SimpleGrantedAuthority> getAuthorities() {
-        return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
+        return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).toList();
     }
 
     @Override

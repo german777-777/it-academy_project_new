@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class ValidationAspect {
     private final Validator validator;
 
-    @Before("@annotation(Validate)")
+    @Before("@annotation(com.example.aop.annotation.Validate)")
     public void validate(JoinPoint joinPoint) {
         Set<ConstraintViolation<Object>> violations = Arrays.stream(joinPoint.getArgs())
                 .map(validator::validate)

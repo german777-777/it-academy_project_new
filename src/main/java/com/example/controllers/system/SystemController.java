@@ -1,7 +1,7 @@
 package com.example.controllers.system;
 
 import com.example.dto.credentials.CredentialsRequestDto;
-import com.example.dto.user.RegistrationRequestDto;
+import com.example.dto.user.system.RegistrationRequestDto;
 import com.example.model.users.Person;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,10 +43,9 @@ public class SystemController {
         String login = credentialsDto.login();
         String password = credentialsDto.password();
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
-        Person person = personService.findByLogin(login);
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
 
-        String token = provider.generateToken(person.getLogin(), person.getRoles());
+        String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
         return new ResponseEntity<>(Map.of("Аутентификация и авторизация прошли успешно!", token), HttpStatus.OK);
     }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <include file="db/changelog/2022-06-19/DATA/V1__create_credentials_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V2__create_users_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V3__create_roles_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V4__create_authorities_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V5__create_users_roles_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V6__create_roles_authorities_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V7__create_subjects_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V8__create_marks_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V9__create_salaries_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V10__create_groups_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V11__create_groups_teachers_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V12__create_groups_students_table.xml"/>
+    <include file="db/changelog/2022-06-19/DATA/V13__create_groups_subjects_table.xml"/>
+
+</databaseChangeLog>

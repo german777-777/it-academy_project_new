@@ -7,7 +7,7 @@ import com.example.model.users.Student;
 import com.example.model.users.Teacher;
 import com.example.repository.GroupRepository;
 import com.example.repository.users.PersonRepository;
-import com.example.repository.users.roles.RoleRepository;
+import com.example.repository.roles.RoleRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -60,12 +60,12 @@ public class CommonPersonService extends AbstractPersonService {
 
     @Override
     public Student findStudentById(Long id) {
-        return personRepository.findStudentById(id).orElseThrow(() -> new NotFoundEntityException("Студент не найден по ID!"));
+        /*return personRepository.findStudentById(id).orElseThrow(() -> new NotFoundEntityException("Студент не найден по ID!"));*/
     }
 
     @Override
     public List<Student> findAllStudents() {
-        return personRepository.findAllStudents();
+        /*return personRepository.findAllStudents();*/
     }
 
     @Override
@@ -104,11 +104,11 @@ public class CommonPersonService extends AbstractPersonService {
 
     @Override
     public Teacher findTeacherById(Long id) {
-        return personRepository.findTeacherById(id).orElseThrow(() -> new NotFoundEntityException("Учитель не найден по ID!"));
+        /*return personRepository.findTeacherById(id).orElseThrow(() -> new NotFoundEntityException("Учитель не найден по ID!"));*/
     }
 
     @Override
     public List<Teacher> findAllTeachers() {
-        return personRepository.findAllTeachers();
+        /*return personRepository.findAllTeachers();*/
     }
 }

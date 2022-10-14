@@ -1,4 +1,4 @@
-package com.example.dto.user;
+package com.example.dto.user.system;
 
 import com.example.exceptions.CreateEntityException;
 import com.example.model.users.Person;

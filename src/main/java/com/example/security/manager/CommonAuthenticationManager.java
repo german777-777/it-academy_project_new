@@ -1,9 +1,9 @@
 package com.example.security.manager;
 
+import com.example.exceptions.NotFoundEntityException;
 import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,9 +19,9 @@ public class CommonAuthenticationManager implements AuthenticationManager {
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UserDetails userDetails = personService.loadUserByUsername(authentication.getName());
+        UserDetails userDetails = personService.loadUserByUsername(authentication.getPrincipal().toString());
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
-            throw new BadCredentialsException("Неправильный логин или пароль!");
+            throw new NotFoundEntityException("Неправильный пароль!");
         }
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
     }

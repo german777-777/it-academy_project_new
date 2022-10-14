@@ -10,7 +10,7 @@ import com.example.model.users.Student;
 import com.example.model.users.Teacher;
 import com.example.model.users.roles.Role;
 import com.example.repository.users.PersonRepository;
-import com.example.repository.users.roles.RoleRepository;
+import com.example.repository.roles.RoleRepository;
 import com.example.security.user.UserSecurity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -74,18 +74,16 @@ public abstract class AbstractPersonService implements PersonService {
 
     @Override
     public boolean delete(Long id) {
-        personRepository.findById(id).orElseThrow(() -> new DeleteEntityException("Пользователь не найден по ID: удаление невозможно!"));
+        personRepository.findById(id)
+                .orElseThrow(() -> new DeleteEntityException("Пользователь не найден по ID: удаление невозможно!"));
         personRepository.deleteById(id);
         return true;
     }
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<Person> personOptional = personRepository.findByLogin(login);
-        if (personOptional.isEmpty()) {
-            throw new UsernameNotFoundException("Пользователь не найден по логину!");
-        }
-        Person person = personOptional.get();
+        Person person = personRepository.findByLogin(login)
+                .orElseThrow(() -> new NotFoundEntityException("Неверный логин!"));
         return UserSecurity.convertPersonToUserDetails(person.getLogin(), person.getPassword(), person.getRoles());
     }
 
@@ -97,7 +95,7 @@ public abstract class AbstractPersonService implements PersonService {
         Optional<Role> studentRole = roleRepository.findByName("ROLE_STUDENT");
 
         switch (person.getClass().getSimpleName()) {
-            case "Admin":
+            case "Admin" -> {
                 person.setRoles(List.of(
                         adminRole.orElseThrow(() -> new NotFoundEntityException("Роль администратора не найдена: создание администратора невозможно!")),
                         teacherRole.orElseThrow(() -> new NotFoundEntityException("Роль учителя не найдена: создание администратора невозможно!")),
@@ -105,22 +103,22 @@ public abstract class AbstractPersonService implements PersonService {
                 Admin admin = (Admin) person;
                 personRepository.save(admin);
                 ifPersonSaved = admin.getId() != 0;
-                break;
-            case "Teacher":
+            }
+            case "Teacher" -> {
                 person.setRoles(List.of(
                         teacherRole.orElseThrow(() -> new NotFoundEntityException("Роль учителя не найдена: создание учителя невозможно!")),
                         studentRole.orElseThrow(() -> new NotFoundEntityException("Роль студента не найдена: создание учителя невозможно!"))));
                 Teacher teacher = (Teacher) person;
                 personRepository.save(teacher);
                 ifPersonSaved = teacher.getId() != 0;
-                break;
-            case "Student":
+            }
+            case "Student" -> {
                 person.setRoles(List.of(
                         studentRole.orElseThrow(() -> new NotFoundEntityException("Роль студента не найдена: создание студента невозможно!"))));
                 Student student = (Student) person;
                 personRepository.save(student);
                 ifPersonSaved = student.getId() != 0;
-                break;
+            }
         }
         return ifPersonSaved;
     }
