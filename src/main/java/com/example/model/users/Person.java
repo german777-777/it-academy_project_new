@@ -70,6 +70,10 @@ public abstract class Person {
         return this.credentials.getPassword();
     }
 
+    public void setPassword(String password) {
+        this.credentials.setPassword(password);
+    }
+
     @Override
     public String toString() {
         return "[ID: " + id + ", first name: " + firstName + ", last name: " + lastName + ", patronymic: " + patronymic + ", birthdate: " + birthDate + ", credentials: " + credentials + ", roles: " + roles.toString();

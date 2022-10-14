@@ -1,16 +1,19 @@
 package com.example.service.users;
 
 import com.example.model.users.Person;
-import com.example.service.users.student.StudentService;
-import com.example.service.users.teacher.TeacherService;
-import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface PersonService extends TeacherService, StudentService, UserDetailsService {
-    boolean save(Person person);
+import java.util.List;
+
+public interface PersonService {
+    Person save(Person person);
+
+    Person findById(Long id);
 
     Person findByLogin(String login);
 
-    boolean update(Person oldPerson, Person newPerson);
+    List<Person> findAll();
+
+    Person update(Person person);
 
     boolean delete(Long id);
 }

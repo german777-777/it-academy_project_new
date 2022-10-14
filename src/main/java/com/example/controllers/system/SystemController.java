@@ -1,12 +1,11 @@
 package com.example.controllers.system;
 
 import com.example.dto.credentials.CredentialsRequestDto;
-import com.example.dto.user.system.RegistrationDto;
+import com.example.dto.user.system.PersonRequestCreateDto;
+import com.example.facade.user.PersonFacade;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
-import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -21,21 +20,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/api/system")
 @RequiredArgsConstructor
 public class SystemController {
-    private final PersonService personService;
+    private final PersonFacade personFacade;
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
-    /*@PostMapping("/registration")
-    public ResponseEntity<String> registration(@RequestBody RegistrationDto personDto) {
-        if (personService.save(RegistrationDto.convertToPerson(personDto))) {
-            return new ResponseEntity<>("Регистрация прошла успешно!", HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>("Ошибка сервера! Регистрация прошла неуспешно!", HttpStatus.INTERNAL_SERVER_ERROR);
-    }*/
+    @PostMapping("/registration")
+    public ResponseEntity<String> registration(@RequestBody PersonRequestCreateDto personDto) {
+        personFacade.savePerson(personDto);
+        return ResponseEntity.ok("Регистрация прошла успешно!");
+    }
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody CredentialsRequestDto credentialsDto) {
@@ -46,7 +46,7 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        return new ResponseEntity<>(Map.of("Аутентификация и авторизация прошли успешно!", token), HttpStatus.OK);
+        return new ResponseEntity<>(Map.of("Аутентификация и авторизация прошли успешно!", token), OK);
     }
 
     @PostMapping("/logout")
@@ -55,9 +55,9 @@ public class SystemController {
         logoutHandler.logout(request, response, null);
 
         if (logoutHandler.isInvalidateHttpSession() && SecurityContextHolder.getContext().getAuthentication() == null) {
-            return new ResponseEntity<>("Вы вышли из аккаунта!", HttpStatus.OK);
+            return new ResponseEntity<>("Вы вышли из аккаунта!", OK);
         } else {
-            return new ResponseEntity<>("Вы не вышли из аккаунта!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Вы не вышли из аккаунта!", BAD_REQUEST);
         }
     }
 }

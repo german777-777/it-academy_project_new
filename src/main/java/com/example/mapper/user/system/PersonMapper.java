@@ -1,16 +1,22 @@
 package com.example.mapper.user.system;
 
-import com.example.dto.user.person.PersonDto;
-import com.example.dto.user.system.RegistrationDto;
+import com.example.dto.user.person.PersonRequestUpdateDto;
+import com.example.dto.user.person.PersonResponseDto;
+import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.model.users.Person;
+import com.example.model.users.roles.Role;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
 public interface PersonMapper {
-    Person toEntity(RegistrationDto registrationDto);
+    Person toEntity(PersonRequestCreateDto personRequestCreateDto);
 
-    PersonDto toDto(Person person);
+    Person toEntity(PersonRequestUpdateDto personRequestUpdateDto);
 
-    List<PersonDto> toListDtos(List<Person> people);
+    PersonResponseDto toDto(Person person);
 
+    List<PersonResponseDto> toListDtos(List<Person> people);
+
+    UserDetails toUserDetails(String login, String password, List<Role> roles);
 }

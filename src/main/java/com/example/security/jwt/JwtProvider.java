@@ -1,7 +1,7 @@
 package com.example.security.jwt;
 
 import com.example.exceptions.JwtAuthenticationException;
-import com.example.service.users.PersonService;
+import com.example.facade.user.PersonFacade;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -9,7 +9,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,7 +24,7 @@ import java.util.Date;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-    private final PersonService personService;
+    private final PersonFacade personFacade;
 
     @Value("${jwt.token.secret}")
     private String secret;
@@ -67,7 +66,7 @@ public class JwtProvider {
 
     public Authentication getAuthentication(String token) {
         try {
-            UserDetails userDetails = personService.loadUserByUsername(getLogin(token));
+            UserDetails userDetails = personFacade.loadUserByUsername(getLogin(token));
             return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         } catch (JwtException | IllegalArgumentException ex) {
             throw new JwtAuthenticationException();

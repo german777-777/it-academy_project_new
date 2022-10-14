@@ -5,7 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-public record PersonDto(
+public record PersonRequestUpdateDto(
+        @NotNull
+        Long id,
         @NotBlank
         String firstName,
         @NotBlank
@@ -14,5 +16,9 @@ public record PersonDto(
         String patronymic,
         @NotNull
         @Valid
-        LocalDate birthDate
+        LocalDate birthDate,
+        @NotBlank
+        String login,
+        @NotBlank
+        String password
 ) {}

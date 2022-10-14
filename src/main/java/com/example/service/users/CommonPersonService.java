@@ -1,114 +1,70 @@
 package com.example.service.users;
 
+import com.example.exceptions.CreateEntityException;
+import com.example.exceptions.DeleteEntityException;
 import com.example.exceptions.NotFoundEntityException;
 import com.example.exceptions.UpdateEntityException;
-import com.example.model.group.Group;
-import com.example.model.users.Student;
-import com.example.model.users.Teacher;
-import com.example.repository.GroupRepository;
+import com.example.model.users.Person;
 import com.example.repository.users.PersonRepository;
-import com.example.repository.roles.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
+
 @Service
-public class CommonPersonService extends AbstractPersonService {
+@RequiredArgsConstructor
+public class CommonPersonService implements PersonService {
+
     private final PersonRepository personRepository;
-    private final GroupRepository groupRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public CommonPersonService(PersonRepository personRepository, RoleRepository roleRepository, GroupRepository groupRepository, PasswordEncoder passwordEncoder) {
-        super(personRepository, roleRepository, passwordEncoder);
-        this.personRepository = personRepository;
-        this.groupRepository = groupRepository;
+    @Override
+    @Transactional
+    public Person save(Person person) {
+        if (personRepository.ifExistsByLogin(person.getLogin())) {
+            throw new CreateEntityException(" cause already existing with this login");
+        }
+        person.setPassword(passwordEncoder.encode(person.getPassword()));
+        return personRepository.save(person);
     }
 
     @Override
-    public boolean addStudentToGroup(Student student, Group group) {
-        if (student == null || group == null) {
-            throw new UpdateEntityException("Некорректные данные: студент или группа не найдены!");
-        }
-
-        if (group.getStudents().contains(student)) {
-            throw new UpdateEntityException("Студент уже присутствует в этой группе!");
-        }
-
-        group.addStudent(student);
-
-        groupRepository.save(group);
-
-        return group.getId() != 0;
+    public Person findById(Long id) {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
     }
 
     @Override
-    public boolean deleteStudentFromGroup(Student student, Group group) {
-        if (student == null || group == null) {
-            throw new UpdateEntityException("Некорректные данные: студент или группа не найдены!");
-        }
-
-        if (!group.getStudents().contains(student)) {
-            throw new UpdateEntityException("Студент не присутствует в этой группе!");
-        }
-
-        group.removeStudent(student);
-
-        groupRepository.save(group);
-
-        return group.getId() != 0;
+    public Person findByLogin(String login) {
+        return personRepository.findByLogin(login)
+                .orElseThrow(() -> new NotFoundEntityException(" by login"));
     }
 
     @Override
-    public Student findStudentById(Long id) {
-        /*return personRepository.findStudentById(id).orElseThrow(() -> new NotFoundEntityException("Студент не найден по ID!"));*/
+    public List<Person> findAll() {
+        return personRepository.findAll();
     }
 
     @Override
-    public List<Student> findAllStudents() {
-        /*return personRepository.findAllStudents();*/
-    }
-
-    @Override
-    public boolean addTeacherToGroup(Teacher teacher, Group group) {
-        if (teacher == null || group == null) {
-            throw new UpdateEntityException("Некорректные данные: учитель или группа не найдены!");
+    @Transactional(isolation = REPEATABLE_READ)
+    public Person update(Person person) {
+        if (personRepository.ifExistsByLogin(person.getLogin())) {
+            throw new UpdateEntityException(" cause already existing with this login");
         }
-
-        if (group.getTeachers().contains(teacher)) {
-            throw new UpdateEntityException("Учитель уже присутствует в этой группе!");
-        }
-
-        group.addTeacher(teacher);
-
-        groupRepository.save(group);
-
-        return group.getId() != 0;
+        person.setPassword(passwordEncoder.encode(person.getPassword()));
+        return personRepository.save(person);
     }
 
     @Override
-    public boolean deleteTeacherFromGroup(Teacher teacher, Group group) {
-        if (teacher == null || group == null) {
-            throw new UpdateEntityException("Некорректные данные: учитель или группа не найдены!");
+    public boolean delete(Long id) {
+        if (!personRepository.ifExistsById(id)) {
+            throw new DeleteEntityException(" cause not exists with this id");
         }
-
-        if (!group.getTeachers().contains(teacher)) {
-            throw new UpdateEntityException("Учитель не присутствует в этой группе!");
-        }
-
-        group.removeTeacher(teacher);
-
-        groupRepository.save(group);
-
-        return group.getId() != 0;
-    }
-
-    @Override
-    public Teacher findTeacherById(Long id) {
-        /*return personRepository.findTeacherById(id).orElseThrow(() -> new NotFoundEntityException("Учитель не найден по ID!"));*/
-    }
-
-    @Override
-    public List<Teacher> findAllTeachers() {
-        /*return personRepository.findAllTeachers();*/
+        personRepository.deleteById(id);
+        return true;
     }
 }

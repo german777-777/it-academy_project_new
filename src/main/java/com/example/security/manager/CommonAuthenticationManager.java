@@ -1,7 +1,7 @@
 package com.example.security.manager;
 
 import com.example.exceptions.NotFoundEntityException;
-import com.example.service.users.PersonService;
+import com.example.facade.user.PersonFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CommonAuthenticationManager implements AuthenticationManager {
-    private final PersonService personService;
+    private final PersonFacade personFacade;
     private final PasswordEncoder passwordEncoder;
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        UserDetails userDetails = personService.loadUserByUsername(authentication.getPrincipal().toString());
+        UserDetails userDetails = personFacade.loadUserByUsername(authentication.getPrincipal().toString());
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
             throw new NotFoundEntityException("Неправильный пароль!");
         }
