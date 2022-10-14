@@ -35,7 +35,7 @@ public class JwtFilter extends GenericFilterBean {
             SecurityContextHolder.clearContext();
             // forward на login-page для аутентификации
             ((HttpServletResponse) response).sendError(ex.getStatus().value());
-            throw new JwtAuthenticationException(ex.getMessage(), ex.getStatus());
+            throw new JwtAuthenticationException();
         }
 
         chain.doFilter(request, response);

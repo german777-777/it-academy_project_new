@@ -30,7 +30,7 @@ public class ValidationAspect {
                 .collect(Collectors.toSet());
 
         if (!violations.isEmpty()) {
-            throw new ValidationException("Некорректные данные!");
+            throw new ValidationException(violations);
         }
     }
 }

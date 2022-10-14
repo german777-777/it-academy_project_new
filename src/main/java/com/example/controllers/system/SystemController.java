@@ -1,8 +1,7 @@
 package com.example.controllers.system;
 
 import com.example.dto.credentials.CredentialsRequestDto;
-import com.example.dto.user.system.RegistrationRequestDto;
-import com.example.model.users.Person;
+import com.example.dto.user.system.RegistrationDto;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
 import com.example.service.users.PersonService;
@@ -30,13 +29,13 @@ public class SystemController {
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
-    @PostMapping("/registration")
-    public ResponseEntity<String> registration(@RequestBody RegistrationRequestDto personDto) {
-        if (personService.save(RegistrationRequestDto.convertToPerson(personDto))) {
+    /*@PostMapping("/registration")
+    public ResponseEntity<String> registration(@RequestBody RegistrationDto personDto) {
+        if (personService.save(RegistrationDto.convertToPerson(personDto))) {
             return new ResponseEntity<>("Регистрация прошла успешно!", HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Ошибка сервера! Регистрация прошла неуспешно!", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    }*/
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@RequestBody CredentialsRequestDto credentialsDto) {

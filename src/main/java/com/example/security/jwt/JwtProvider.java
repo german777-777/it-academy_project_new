@@ -61,7 +61,7 @@ public class JwtProvider {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException ex) {
-            throw new JwtAuthenticationException("Необходимо ввести логин и пароль!", HttpStatus.UNAUTHORIZED);
+            throw new JwtAuthenticationException();
         }
     }
 
@@ -70,7 +70,7 @@ public class JwtProvider {
             UserDetails userDetails = personService.loadUserByUsername(getLogin(token));
             return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
         } catch (JwtException | IllegalArgumentException ex) {
-            throw new JwtAuthenticationException("Неверный логин или пароль!", HttpStatus.UNAUTHORIZED);
+            throw new JwtAuthenticationException();
         }
     }
 

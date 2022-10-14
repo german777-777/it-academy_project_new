@@ -1,10 +1,10 @@
 package com.example.exceptions;
 
-import org.springframework.http.HttpStatus;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 public class JwtAuthenticationException extends ApiException {
 
-    public JwtAuthenticationException(Object entity) {
-        super(HttpStatus.UNAUTHORIZED, "Not correct credentials", entity);
+    public JwtAuthenticationException() {
+        super(UNAUTHORIZED, "Not correct credentials");
     }
 }
