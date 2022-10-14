@@ -1,7 +1,9 @@
 package com.example.exceptions;
 
-public class DeleteEntityException extends RuntimeException {
-    public DeleteEntityException(String message) {
-        super(message);
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+public class DeleteEntityException extends ApiException {
+    public DeleteEntityException(Object entity) {
+        super(BAD_REQUEST, "Entity wasn't deleted", entity);
     }
 }

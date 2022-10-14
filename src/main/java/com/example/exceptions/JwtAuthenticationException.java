@@ -1,14 +1,10 @@
 package com.example.exceptions;
 
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-@Getter
-public class JwtAuthenticationException extends RuntimeException {
-    private final HttpStatus status;
+public class JwtAuthenticationException extends ApiException {
 
-    public JwtAuthenticationException(String message, HttpStatus status) {
-        super(message);
-        this.status = status;
+    public JwtAuthenticationException(Object entity) {
+        super(HttpStatus.UNAUTHORIZED, "Not correct credentials", entity);
     }
 }

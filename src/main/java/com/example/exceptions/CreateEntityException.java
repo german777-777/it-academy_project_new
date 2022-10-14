@@ -1,7 +1,10 @@
 package com.example.exceptions;
 
-public class CreateEntityException extends RuntimeException {
-    public CreateEntityException(String message) {
-        super(message);
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+public class CreateEntityException extends ApiException {
+
+    public CreateEntityException(Object entity) {
+        super(BAD_REQUEST, "Entity wasn't created", entity);
     }
 }
