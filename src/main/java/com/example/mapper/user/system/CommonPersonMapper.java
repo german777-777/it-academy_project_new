@@ -57,7 +57,7 @@ public class CommonPersonMapper implements PersonMapper {
 
     @Override
     public PersonResponseDto toDto(Person person) {
-        return new PersonResponseDto(person.getFirstName(), person.getLastName(), person.getPatronymic(), person.getBirthDate());
+        return new PersonResponseDto(person.getId(), person.getFirstName(), person.getLastName(), person.getPatronymic(), person.getBirthDate());
     }
 
     @Override

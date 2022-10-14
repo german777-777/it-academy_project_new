@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public record PersonResponseDto(
+        @NotNull
+        Long id,
         @NotBlank
         String firstName,
         @NotBlank
