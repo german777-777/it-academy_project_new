@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V22__insert_group_subject" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="groups"/>
+                <and>
+                    <tableExists tableName="subjects"/>
+                </and>
+                <and>
+                    <tableExists tableName="groups_subjects"/>
+                </and>
+            </preConditions>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Primitive types')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Classes and Objects')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'OOP')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Access modifiers')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Methods')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Class String')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Class Object')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Equals and hashCode')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Arrays')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Wrapper Classes')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (List)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (Set)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (Map)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (HashMap)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (Queue and Deque)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Data structures')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Collections (Iterable)')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'PostgreSQL')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'MySQL')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'JDBC')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Concurrency')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Serializable')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Externalizable')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'SOLID')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Design Patterns')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'XML')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Maven')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Groovy')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Gradle')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'WEB Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'HTTP')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'WEB Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Servlets')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'WEB Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Tomcat')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'WEB Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'HTML')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'WEB Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'JSP')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'JPA Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Hibernate')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'XML')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring Core')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring MVC')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring Data')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring Security')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'JWT')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Microservice Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Microservice architecture')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Microservice Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Apache Kafka')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Microservice Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring Kafka')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Other tools Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Docker')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Other tools Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Docker Compose Security')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Other tools Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'GIT')"/>
+            </insert>
+
+            <insert tableName="groups_subjects">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Other tools Group')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Liquibase')"/>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>

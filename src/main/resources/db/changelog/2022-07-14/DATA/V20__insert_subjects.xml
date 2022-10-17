@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V20__insert_subjects" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="subjects"/>
+            </preConditions>
+            
+            <insert tableName="subjects">
+                <column name="name">Java language</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Primitive types</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Classes and Objects</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">OOP</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Access modifiers</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Methods</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Class String</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Class Object</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Equals and hashCode</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Arrays</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Wrapper Classes</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (List)</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (Set)</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (Map)</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (HashMap)</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (Queue and Deque)</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Data structures</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Collections (Iterable)</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">PostgreSQL</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">MySQL</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">JDBC</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Concurrency</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Reflection API</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Serializable</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Externalizable</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">SOLID</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Design Patterns</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">XML</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Maven</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Groovy</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">Gradle</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">HTTP</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Servlets</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Tomcat</column>
+            </insert>
+
+            <insert tableName="subjects">
+                <column name="name">HTML</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">JSP</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Hibernate</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Liquibase</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Spring Core</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Spring MVC</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Spring Data</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Spring Security</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">JWT</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Microservice architecture</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Apache Kafka</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Spring Kafka</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Docker</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">Docker Compose</column>
+            </insert>
+            
+            <insert tableName="subjects">
+                <column name="name">GIT</column>
+            </insert>
+            
+        </changeSet>
+    
+</databaseChangeLog>

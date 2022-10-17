@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V24__insert_group_student" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="users"/>
+                <and>
+                    <tableExists tableName="groups"/>
+                </and>
+                <and>
+                    <tableExists tableName="users_roles"/>
+                </and>
+                <and>
+                    <tableExists tableName="roles"/>
+                </and>
+            </preConditions>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student1' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student2' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student3' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student4' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student5' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student6' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Java Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student7' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student8' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student9' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Build Systems Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student10' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'JPA Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student11' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'JPA Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student12' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student13' AND r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="groups_teachers">
+                <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Spring Group')"/>
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student14' AND r.name = 'STUDENT')"/>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>

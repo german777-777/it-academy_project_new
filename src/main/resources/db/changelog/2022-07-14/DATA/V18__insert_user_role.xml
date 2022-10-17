@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    
+        <changeSet id="V18__insert_user_role" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="users_roles"/>
+                <and>
+                    <tableExists tableName="users"/>
+                </and>
+                <and>
+                    <tableExists tableName="roles"/>
+                </and>
+                <and>
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM users u WHERE u.id IS NULL</sqlCheck>
+                </and>
+                <and>
+                    <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles r WHERE r.id IS NULL</sqlCheck>
+                </and>
+            </preConditions>
+            
+            
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Admin')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student1')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student2')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student3')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student4')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student5')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student6')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student7')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student8')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student9')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student10')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student11')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student12')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student13')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Student14')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            </insert>
+            
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Teacher1')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Teacher2')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Teacher3')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Teacher4')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            </insert>
+
+            <insert tableName="users_roles">
+                <column name="user_id" valueComputed="(SELECT u.id FROM users u LEFT JOIN credentials c ON u.credential_id = c.id WHERE c.login = 'Teacher5')"/>
+                <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            </insert>
+            
+        </changeSet>
+        
+    
+</databaseChangeLog>

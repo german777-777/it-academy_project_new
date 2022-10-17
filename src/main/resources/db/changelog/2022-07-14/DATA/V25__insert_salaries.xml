@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V25__insert_salaries" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="salaries"/>
+                <and>
+                    <tableExists tableName="users"/>
+                </and>
+                <and>
+                    <tableExists tableName="users_roles"/>
+                </and>
+                <and>
+                    <tableExists tableName="roles"/>
+                </and>
+            </preConditions>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher1' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-07-14</column>
+                <column name="count">1450</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher1' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-08-14</column>
+                <column name="count">1500</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher1' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-09-14</column>
+                <column name="count">1550</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher2' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-08-15</column>
+                <column name="count">1600</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher2' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-09-15</column>
+                <column name="count">1900</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher3' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-08-15</column>
+                <column name="count">1550</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher3' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-09-15</column>
+                <column name="count">1490</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher4' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-08-15</column>
+                <column name="count">1950</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher4' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-09-15</column>
+                <column name="count">1960</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher5' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-08-15</column>
+                <column name="count">2000</column>
+            </insert>
+
+            <insert tableName="salaries">
+                <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Teacher5' AND r.name = 'TEACHER')"/>
+                <column name="date_of_issue">2022-09-15</column>
+                <column name="count">2150</column>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>

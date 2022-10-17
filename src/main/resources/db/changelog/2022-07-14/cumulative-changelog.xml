@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <include file="db/changelog/2022-07-14/DATA/V14__insert_credentials.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V15__insert_users.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V16__insert_roles.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V17__insert_authorities.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V18__insert_user_role.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V19__insert_role_authority.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V20__insert_subjects.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V21__insert_groups.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V22__insert_group_subject.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V23__insert_group_teacher.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V24__insert_group_student.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V25__insert_salaries.xml"/>
+    <include file="db/changelog/2022-07-14/DATA/V26__insert_marks.xml"/>
+
+
+</databaseChangeLog>

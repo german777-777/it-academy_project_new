@@ -35,6 +35,10 @@ public class Teacher extends Person {
         this.salaries.add(salary);
     }
 
+    public void removeSalary(Salary salary) {
+        this.salaries.remove(salary);
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", salaries: " + salaries.toString() + "]";

@@ -35,6 +35,10 @@ public class Student extends Person {
         this.marks.add(mark);
     }
 
+    public void removeMark(Mark mark) {
+        this.marks.remove(mark);
+    }
+
     @Override
     public String toString() {
         return super.toString() + ", marks: " + marks.toString() + "]";

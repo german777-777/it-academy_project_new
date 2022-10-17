@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V21__insert_groups" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="groups"/>
+            </preConditions>
+
+            <insert tableName="groups">
+                <column name="name">Java Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">Build Systems Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">WEB Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">JPA Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">Spring Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">Microservice Group</column>
+            </insert>
+
+            <insert tableName="groups">
+                <column name="name">Other tools Group</column>
+            </insert>
+        </changeSet>
+
+</databaseChangeLog>

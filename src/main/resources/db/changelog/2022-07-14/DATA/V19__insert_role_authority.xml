@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="V19__insert_role_authority" author="German Pisarev">
+        <preConditions>
+            <tableExists tableName="roles_authorities"/>
+            <and>
+                <tableExists tableName="roles"/>
+            </and>
+            <and>
+                <tableExists tableName="authorities"/>
+            </and>
+            <and>
+                <sqlCheck expectedResult="0">SELECT COUNT(*) FROM roles r WHERE r.id IS NULL</sqlCheck>
+            </and>
+            <and>
+                <sqlCheck expectedResult="0">SELECT COUNT(*) FROM authorities a WHERE a.id IS NULL</sqlCheck>
+            </and>
+        </preConditions>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'CREATE_USERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'CREATE_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'CREATE_MARKS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'CREATE_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'CREATE_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_USERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_USERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_MARKS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_USERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_MARKS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_USERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_MARKS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'ADD_STUDENT_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'ADD_MARK_TO_STUDENT_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_STUDENT_FROM_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'DELETE_STUDENT_MARK_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'UPDATE_STUDENT_MARK_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_STUDENTS_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_STUDENT_MARKS_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_TEACHERS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_STUDENTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_TEACHER_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_TEACHER_SALARIES')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_SUBJECTS_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_SUBJECTS_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_SUBJECTS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_ALL_GROUPS')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'STUDENT')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities WHERE a.name = 'READ_STUDENT_MARKS')"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

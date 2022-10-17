@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V26__insert_marks" author="German Pisarev">
+            <preConditions>
+                <tableExists tableName="marks"/>
+                <and>
+                    <tableExists tableName="users"/>
+                </and>
+                <and>
+                    <tableExists tableName="users_roles"/>
+                </and>
+                <and>
+                    <tableExists tableName="roles"/>
+                </and>
+            </preConditions>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student1' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">8</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student2' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">5</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student3' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">7</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student4' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">8</column>
+            </insert>
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student5' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">10</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student6' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">9</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Java language')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student7' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-01</column>
+                <column name="count">10</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'XML')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student8' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">8</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'XML')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student9' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">8</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'XML')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student10' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">8</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Hibernate')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student11' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">9</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Hibernate')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student12' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">10</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring Core')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student13' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">10</column>
+            </insert>
+
+            <insert tableName="marks">
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Spring MVC')"/>
+                <column name="student_id" valueComputed="(SELECT u.id FROM users u
+                    LEFT JOIN credentials c ON u.credential_id = c.id
+                    LEFT JOIN users_roles ur ON u.id = ur.user_id
+                        LEFT JOIN roles r ON ur.user_id = r.id
+                    WHERE c.login = 'Student14' AND r.name = 'STUDENT')"/>
+                <column name="date_of_issue">2022-07-02</column>
+                <column name="count">10</column>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>

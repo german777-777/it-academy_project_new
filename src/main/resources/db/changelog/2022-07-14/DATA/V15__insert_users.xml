@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="V15__insert_users" author="German Pisarev">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="users"/>
+            <and>
+                <tableExists tableName="credentials"/>
+            </and>
+            <and>
+                <columnExists tableName="users" columnName="credential_id"/>
+            </and>
+        </preConditions>
+
+        <insert tableName="users">
+            <column name="first_name">German</column>
+            <column name="last_name">Pisarev</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2001-08-07</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Admin')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Grigoriy</column>
+            <column name="last_name">Gromov</column>
+            <column name="patronymic">Andreevich</column>
+            <column name="birth_date">2004-01-12</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student1')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Mikhail</column>
+            <column name="last_name">Asafiev</column>
+            <column name="patronymic">Mikhailovich</column>
+            <column name="birth_date">2002-05-29</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student2')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Evgenii</column>
+            <column name="last_name">Zhevalo</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2001-07-19</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student3')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Artem</column>
+            <column name="last_name">Tikhonov</column>
+            <column name="patronymic">Gennadievich</column>
+            <column name="birth_date">2004-02-20</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student4')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Alexey</column>
+            <column name="last_name">Vertuhaev</column>
+            <column name="patronymic">Alexeevitch</column>
+            <column name="birth_date">2005-10-13</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student5')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Gennadiy</column>
+            <column name="last_name">Hohlov</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2003-04-08</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student6')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Dzmitry</column>
+            <column name="last_name">Orehov</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2002-07-14</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student7')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Bohdan</column>
+            <column name="last_name">Plehov</column>
+            <column name="patronymic">Anatolievich</column>
+            <column name="birth_date">2005-11-08</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student8')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Oleg</column>
+            <column name="last_name">Riabinov</column>
+            <column name="patronymic">Yegorovich</column>
+            <column name="birth_date">2004-03-27</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student9')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Egor</column>
+            <column name="last_name">Frolov</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2001-07-08</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student10')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Fedor</column>
+            <column name="last_name">Riabinov</column>
+            <column name="patronymic">Yegorovich</column>
+            <column name="birth_date">2002-06-17</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student11')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Alexandr</column>
+            <column name="last_name">Igreev</column>
+            <column name="patronymic">Ivanovich</column>
+            <column name="birth_date">2001-07-08</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student12')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Ivan</column>
+            <column name="last_name">Gudvin</column>
+            <column name="patronymic">Alexeyevich</column>
+            <column name="birth_date">2004-08-15</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student13')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Ivan</column>
+            <column name="last_name">Lambov</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">2005-12-23</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student14')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Valerii</column>
+            <column name="last_name">Marshelov</column>
+            <column name="patronymic">Grigorievich</column>
+            <column name="birth_date">1986-12-12</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher1')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Yurii</column>
+            <column name="last_name">Tractov</column>
+            <column name="patronymic">Olegovich</column>
+            <column name="birth_date">1975-12-10</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher2')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Sergei</column>
+            <column name="last_name">Eremin</column>
+            <column name="patronymic">Dmitrievich</column>
+            <column name="birth_date">1978-08-08</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher3')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Grigorii</column>
+            <column name="last_name">Bariev</column>
+            <column name="patronymic">Pavlovich</column>
+            <column name="birth_date">1968-07-20</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher4')"/>
+        </insert>
+
+        <insert tableName="users">
+            <column name="first_name">Alexandr</column>
+            <column name="last_name">Parhalov</column>
+            <column name="patronymic">Alexeyevich</column>
+            <column name="birth_date">1964-11-11</column>
+            <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher5')"/>
+        </insert>
+
+    </changeSet>
+
+
+</databaseChangeLog>

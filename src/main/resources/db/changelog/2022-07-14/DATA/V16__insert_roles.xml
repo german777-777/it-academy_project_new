@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+        <changeSet id="V16__insert_roles" author="German Pisarev">
+            <preConditions onFail="MARK_RAN">
+                <tableExists tableName="roles"/>
+            </preConditions>
+
+            <insert tableName="roles">
+                <column name="name">ADMIN</column>
+            </insert>
+
+            <insert tableName="roles">
+                <column name="name">TEACHER</column>
+            </insert>
+
+            <insert tableName="roles">
+                <column name="name">STUDENT</column>
+            </insert>
+
+        </changeSet>
+
+</databaseChangeLog>
