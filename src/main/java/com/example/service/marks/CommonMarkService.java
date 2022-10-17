@@ -8,10 +8,13 @@ import com.example.repository.MarkRepository;
 import com.example.repository.users.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static java.lang.Boolean.FALSE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +23,7 @@ public class CommonMarkService implements MarkService {
     private final PersonRepository personRepository;
 
     @Override
+    @Transactional
     public void save(Long studentId, Mark mark) {
         saveStudentWithNewMark(studentId, mark);
     }
@@ -44,6 +48,7 @@ public class CommonMarkService implements MarkService {
     }
 
     @Override
+    @Transactional(isolation = REPEATABLE_READ)
     public void update(Long studentId, Mark mark) {
         saveStudentWithNewMark(studentId, mark);
     }

@@ -1,6 +1,7 @@
 package com.example.facade.group;
 
 import com.example.annotation.Facade;
+import com.example.annotation.Validate;
 import com.example.dto.group.GroupRequestCreateDto;
 import com.example.dto.group.GroupRequestUpdateDto;
 import com.example.dto.group.GroupResponseDto;
@@ -18,21 +19,25 @@ public class CommonGroupFacade implements GroupFacade {
     private final GroupMapper mapper;
 
     @Override
+    @Validate
     public void saveGroup(GroupRequestCreateDto groupRequestCreateDto) {
 
     }
 
     @Override
+    @Validate
     public GroupResponseDto getGroupById(Long id) {
         return null;
     }
 
     @Override
+    @Validate
     public List<GroupResponseDto> getAllGroups() {
         return null;
     }
 
     @Override
+    @Validate
     public void updateGroup(GroupRequestUpdateDto groupRequestUpdateDto) {
 
     }
