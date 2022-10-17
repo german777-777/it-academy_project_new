@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
 @Service
@@ -25,7 +27,7 @@ public class CommonPersonService implements PersonService {
     @Override
     @Transactional
     public Person save(Person person) {
-        if (personRepository.ifExistsByLogin(person.getLogin())) {
+        if (TRUE.equals(personRepository.ifExistsByLogin(person.getLogin()))) {
             throw new CreateEntityException(" cause already existing with this login");
         }
         person.setPassword(passwordEncoder.encode(person.getPassword()));
@@ -52,7 +54,7 @@ public class CommonPersonService implements PersonService {
     @Override
     @Transactional(isolation = REPEATABLE_READ)
     public Person update(Person person) {
-        if (personRepository.ifExistsByLogin(person.getLogin())) {
+        if (TRUE.equals(personRepository.ifExistsByLogin(person.getLogin()))) {
             throw new UpdateEntityException(" cause already existing with this login");
         }
         person.setPassword(passwordEncoder.encode(person.getPassword()));
@@ -61,7 +63,7 @@ public class CommonPersonService implements PersonService {
 
     @Override
     public boolean delete(Long id) {
-        if (!personRepository.ifExistsById(id)) {
+        if (FALSE.equals(personRepository.ifExistsById(id))) {
             throw new DeleteEntityException(" cause not exists with this id");
         }
         personRepository.deleteById(id);

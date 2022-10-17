@@ -8,6 +8,12 @@ import com.example.model.group.Group;
 import com.example.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
 @Service
 @RequiredArgsConstructor
@@ -16,56 +22,39 @@ public class CommonGroupService implements GroupService {
     private final GroupRepository groupRepository;
 
     @Override
-    public boolean save(Group group) {
-        String name = group.getName();
-
-        if (name == null) {
-            throw new CreateEntityException("Некорректные данные!");
+    @Transactional
+    public Group save(Group group) {
+        if (TRUE.equals(groupRepository.ifExistsByName(group.getName()))) {
+            throw new CreateEntityException(" cause already existing by this name");
         }
-
-        if (groupRepository.ifExistsByName(name)) {
-            throw new CreateEntityException("Группа с введённым названием уже существует!");
-        }
-
-        groupRepository.save(group);
-
-        return group.getId() != 0;
+        return groupRepository.save(group);
     }
 
     @Override
     public Group findById(Long id) {
-        return groupRepository.findById(id).orElseThrow(() -> new NotFoundEntityException("Группа не найдена по ID!"));
+        return groupRepository.findById(id)
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
     }
 
     @Override
     public Group findByName(String name) {
-        return groupRepository.findByName(name).orElseThrow(() -> new NotFoundEntityException("Группа не найдена по названию!"));
+        return groupRepository.findByName(name).orElseThrow(() -> new NotFoundEntityException(" by name"));
     }
 
     @Override
-    public boolean update(Group oldGroup, Group newGroup) {
-        if (oldGroup == null) {
-            throw new UpdateEntityException("Некорректные данные: старая группа не найдена!");
+    @Transactional(isolation = REPEATABLE_READ)
+    public Group update(Group group) {
+        if (TRUE.equals(groupRepository.ifExistsByName(group.getName()))) {
+            throw new CreateEntityException(" cause already existing by this name");
         }
-
-        String newGroupName = newGroup.getName();
-
-        if (groupRepository.ifExistsByName(newGroupName)) {
-            throw new UpdateEntityException("Группа с введёнными данными уже существует!");
-        }
-
-        if (newGroupName != null) {
-            oldGroup.setName(newGroupName);
-        }
-
-        groupRepository.save(oldGroup);
-
-        return oldGroup.getId() != 0;
+        return groupRepository.save(group);
     }
 
     @Override
     public boolean delete(Long id) {
-        groupRepository.findById(id).orElseThrow(() -> new DeleteEntityException("Группа не найдена по ID: удаление невозможно!"));
+        if (FALSE.equals(groupRepository.ifExistsById(id))) {
+            throw new DeleteEntityException(" cause not exists by this id");
+        }
         groupRepository.deleteById(id);
         return true;
     }

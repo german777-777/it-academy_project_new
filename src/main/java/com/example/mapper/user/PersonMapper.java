@@ -1,4 +1,4 @@
-package com.example.mapper.user.system;
+package com.example.mapper.user;
 
 import com.example.dto.user.person.PersonRequestUpdateDto;
 import com.example.dto.user.person.PersonResponseDto;

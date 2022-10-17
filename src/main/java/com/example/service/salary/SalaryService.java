@@ -1,16 +1,14 @@
 package com.example.service.salary;
 
 import com.example.model.salary.Salary;
-import com.example.model.users.Teacher;
 
 import java.util.List;
 
 public interface SalaryService {
-    boolean save(Salary salary, Teacher teacher);
-
+    void save(Long teacherId, Salary salary);
     Salary findById(Long id);
-    List<Salary> findSalariesByTeacherId(Long teacherId);
-
-    boolean update(Salary oldSalary, Salary newSalary, Teacher teacher);
+    List<Salary> findAll();
+    List<Salary> findByTeacherId(Long teacherId);
+    void update(Long teacherId, Salary salary);
     boolean delete(Long id);
 }

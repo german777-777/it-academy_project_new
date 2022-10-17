@@ -1,10 +1,11 @@
 package com.example.facade.user;
 
-import com.example.aop.annotation.Validate;
-import com.example.dto.user.person.PersonResponseDto;
+import com.example.annotation.Facade;
+import com.example.annotation.Validate;
 import com.example.dto.user.person.PersonRequestUpdateDto;
+import com.example.dto.user.person.PersonResponseDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
-import com.example.mapper.user.system.PersonMapper;
+import com.example.mapper.user.PersonMapper;
 import com.example.model.users.Person;
 import com.example.model.users.Student;
 import com.example.model.users.Teacher;
@@ -12,11 +13,10 @@ import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+@Facade
 @RequiredArgsConstructor
 public class CommonPersonFacade implements PersonFacade {
 
@@ -30,6 +30,7 @@ public class CommonPersonFacade implements PersonFacade {
     }
 
     @Override
+    @Validate
     public PersonResponseDto getPersonById(Long id) {
         return personMapper.toDto(personService.findById(id));
     }
@@ -41,6 +42,7 @@ public class CommonPersonFacade implements PersonFacade {
     }
 
     @Override
+    @Validate
     public List<PersonResponseDto> getAllStudents() {
         return personMapper.toListDtos(personService.findAll().stream()
                 .filter(person -> person.getClass().equals(Student.class))
@@ -48,6 +50,7 @@ public class CommonPersonFacade implements PersonFacade {
     }
 
     @Override
+    @Validate
     public List<PersonResponseDto> getAllTeachers() {
         return personMapper.toListDtos(personService.findAll().stream()
                 .filter(person -> person.getClass().equals(Teacher.class))

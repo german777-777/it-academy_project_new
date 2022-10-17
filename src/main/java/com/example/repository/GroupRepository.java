@@ -12,16 +12,19 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
             type = EntityGraph.EntityGraphType.LOAD,
             value = "group-with-teachers-students-subjects"
     )
-    @Query(value = "select g from Group g where g.id = ?1")
+    @Query(value = "SELECT g FROM Group g WHERE g.id = ?1")
     Optional<Group> findById(Long id);
 
     @EntityGraph(
             type = EntityGraph.EntityGraphType.LOAD,
             attributePaths = {"teachers", "students", "subjects"}
     )
-    @Query(value = "select g from Group g where g.name = ?1")
+    @Query(value = "SELECT g FROM Group g WHERE g.id = ?1")
     Optional<Group> findByName(String name);
 
-    @Query("select case when count(g) > 0 then true else false end from Group g where g.name = ?1")
+    @Query("SELECT CASE WHEN COUNT(g) > 0 THEN TRUE ELSE FALSE END FROM Group g WHERE g.id = ?1")
+    Boolean ifExistsById(Long id);
+
+    @Query("SELECT CASE WHEN COUNT(g) > 0 THEN TRUE ELSE FALSE END FROM Group g WHERE g.name = ?1")
     Boolean ifExistsByName(String name);
 }

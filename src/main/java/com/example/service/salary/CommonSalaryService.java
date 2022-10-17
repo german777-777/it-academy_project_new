@@ -1,18 +1,19 @@
 package com.example.service.salary;
 
-import com.example.exceptions.CreateEntityException;
 import com.example.exceptions.DeleteEntityException;
 import com.example.exceptions.NotFoundEntityException;
-import com.example.exceptions.UpdateEntityException;
 import com.example.model.salary.Salary;
 import com.example.model.users.Teacher;
 import com.example.repository.SalaryRepository;
 import com.example.repository.users.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
+
+import static java.lang.Boolean.FALSE;
+import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
 @Service
 @RequiredArgsConstructor
@@ -22,65 +23,51 @@ public class CommonSalaryService implements SalaryService {
     private final PersonRepository personRepository;
 
     @Override
-    public boolean save(Salary salary, Teacher teacher) {
-        if (teacher == null) {
-            throw new CreateEntityException("Не найден учитель, которому будет добавлена зарплата!");
-        }
-
-        if (salary.getDateOfIssue() == null || salary.getCount() <= 0) {
-            throw new CreateEntityException("Некорректные данные!");
-        }
-
-        teacher.addSalary(salary);
-
-        personRepository.save(teacher);
-
-        return teacher.getId() != 0;
+    @Transactional
+    public void save(Long teacherId, Salary salary) {
+        saveTeacherWithNewSalary(teacherId, salary);
     }
 
     @Override
     public Salary findById(Long id) {
-        return salaryRepository.findById(id).orElseThrow(() -> new NotFoundEntityException("Зарплата не найдена по ID!"));
+        return salaryRepository.findById(id)
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
     }
 
     @Override
-    public List<Salary> findSalariesByTeacherId(Long teacherId) {
-        return personRepository.findTeacherById(teacherId).orElseThrow(() -> new NotFoundEntityException("Учитель не найден по ID: зарплаты не могут быть получены!")).getSalaries();
+    public List<Salary> findAll() {
+        return salaryRepository.findAll();
     }
 
     @Override
-    public boolean update(Salary oldSalary, Salary newSalary, Teacher teacher) {
-        if (oldSalary == null || teacher == null) {
-            throw new UpdateEntityException("Некорректные данные: старая зарплата или учитель не найдены!");
-        }
-
-        setNewSalaryParameters(oldSalary, newSalary);
-
-        teacher.getSalaries().removeIf(salary -> salary.getId().equals(oldSalary.getId()));
-        teacher.addSalary(oldSalary);
-
-        personRepository.save(teacher);
-
-        return teacher.getId() != 0;
+    public List<Salary> findByTeacherId(Long teacherId) {
+        Teacher teacher = (Teacher) personRepository.findById(teacherId)
+                .filter(person -> person.getClass().equals(Teacher.class))
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+        return teacher.getSalaries();
     }
 
-    private void setNewSalaryParameters(Salary oldSalary, Salary newSalary) {
-        int newCount = newSalary.getCount();
-        LocalDate newDateOfIssue = newSalary.getDateOfIssue();
-
-        if (!(newCount <= 0)) {
-            oldSalary.setCount(newCount);
-        }
-
-        if (newDateOfIssue != null) {
-            oldSalary.setDateOfIssue(newDateOfIssue);
-        }
+    @Override
+    @Transactional(isolation = REPEATABLE_READ)
+    public void update(Long teacherId, Salary salary) {
+        saveTeacherWithNewSalary(teacherId, salary);
     }
 
     @Override
     public boolean delete(Long id) {
-        salaryRepository.findById(id).orElseThrow(() -> new DeleteEntityException("Зарплата не найдена по ID: удаление невозможно!"));
+        if (FALSE.equals(salaryRepository.ifExistsById(id))) {
+            throw new DeleteEntityException(" cause not exists with this id");
+        }
         salaryRepository.deleteById(id);
         return true;
+    }
+
+    private void saveTeacherWithNewSalary(Long teacherId, Salary salary) {
+        Teacher teacher = (Teacher) (personRepository.findById(teacherId)
+                .orElseThrow(() -> new NotFoundEntityException(" by id")));
+
+        teacher.addSalary(salary);
+
+        personRepository.save(teacher);
     }
 }
