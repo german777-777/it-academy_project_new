@@ -3,12 +3,10 @@ package com.example.service.group;
 import com.example.exceptions.CreateEntityException;
 import com.example.exceptions.DeleteEntityException;
 import com.example.exceptions.NotFoundEntityException;
-import com.example.exceptions.UpdateEntityException;
 import com.example.model.group.Group;
 import com.example.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import static java.lang.Boolean.FALSE;

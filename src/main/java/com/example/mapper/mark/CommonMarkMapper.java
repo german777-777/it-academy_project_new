@@ -1,16 +1,16 @@
 package com.example.mapper.mark;
 
+import com.example.annotation.Mapper;
 import com.example.dto.mark.MarkRequestCreateDto;
 import com.example.dto.mark.MarkRequestUpdateDto;
 import com.example.dto.mark.MarkResponseDto;
 import com.example.model.mark.Mark;
 import com.example.service.subjects.SubjectService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+@Mapper
 @RequiredArgsConstructor
 public class CommonMarkMapper implements MarkMapper {
 

@@ -34,7 +34,7 @@ public class SystemController {
     @PostMapping("/registration")
     public ResponseEntity<String> registration(@RequestBody PersonRequestCreateDto personDto) {
         personFacade.savePerson(personDto);
-        return ResponseEntity.ok("Регистрация прошла успешно!");
+        return ResponseEntity.ok("Registration was passed successfully!");
     }
 
     @PostMapping("/login")
@@ -46,7 +46,7 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        return new ResponseEntity<>(Map.of("Аутентификация и авторизация прошли успешно!", token), OK);
+        return new ResponseEntity<>(Map.of("Authentication & authorization were successfully passed!", token), OK);
     }
 
     @PostMapping("/logout")
@@ -55,9 +55,9 @@ public class SystemController {
         logoutHandler.logout(request, response, null);
 
         if (logoutHandler.isInvalidateHttpSession() && SecurityContextHolder.getContext().getAuthentication() == null) {
-            return new ResponseEntity<>("Вы вышли из аккаунта!", OK);
+            return new ResponseEntity<>("You are logged out!", OK);
         } else {
-            return new ResponseEntity<>("Вы не вышли из аккаунта!", BAD_REQUEST);
+            return new ResponseEntity<>("You are not logged out!", BAD_REQUEST);
         }
     }
 }

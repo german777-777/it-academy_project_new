@@ -1,5 +1,6 @@
 package com.example.mapper.user;
 
+import com.example.annotation.Mapper;
 import com.example.dto.user.person.PersonRequestUpdateDto;
 import com.example.dto.user.person.PersonResponseDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Mapper
 @RequiredArgsConstructor
 public class CommonPersonMapper implements PersonMapper {
 

@@ -1,10 +1,10 @@
 package com.example.exceptions;
 
-import org.springframework.http.HttpStatus;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 public class NotFoundEntityException extends ApiException {
 
     public NotFoundEntityException(Object entity) {
-        super(HttpStatus.NOT_FOUND, "Entity wasn't found", entity);
+        super(NOT_FOUND, "Entity wasn't found", entity);
     }
 }

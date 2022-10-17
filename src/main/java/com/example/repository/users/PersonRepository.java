@@ -11,7 +11,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     Boolean ifExistsById(Long id);
     @Query("SELECT CASE WHEN count(p) > 0 THEN TRUE ELSE FALSE END FROM Person p WHERE p.credentials.login = ?1")
     Boolean ifExistsByLogin(String login);
-
     @Query("SELECT p FROM Person p WHERE p.credentials.login = ?1")
     Optional<Person> findByLogin(String login);
 }
