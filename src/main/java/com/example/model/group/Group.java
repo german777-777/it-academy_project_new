@@ -4,10 +4,9 @@ import com.example.model.subject.Subject;
 import com.example.model.users.Student;
 import com.example.model.users.Teacher;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -25,12 +24,11 @@ import javax.persistence.NamedSubgraph;
 import javax.persistence.Table;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "groups")
 @NamedEntityGraphs(
@@ -50,7 +48,6 @@ import java.util.List;
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
     private Long id;
 
     private String name;
@@ -91,6 +88,46 @@ public class Group {
     })
     private List<Subject> subjects = new LinkedList<>();
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
     public void addTeacher(Teacher teacher) {
         this.teachers.add(teacher);
     }
@@ -118,5 +155,18 @@ public class Group {
     @Override
     public String toString() {
         return "[ID: " + id + ", name: " + name + ", teachers: " + teachers.toString() + ", students: " + students.toString() + ", subjects: " + subjects.toString() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Group group = (Group) o;
+        return id != null && Objects.equals(id, group.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -7,10 +7,13 @@ import com.example.dto.group.response.GroupResponseStudentsDto;
 import com.example.dto.group.response.GroupResponseSubjectsDto;
 import com.example.dto.group.response.GroupResponseTeachersDto;
 import com.example.model.group.Group;
+import org.mapstruct.Mapper;
 
 import java.util.List;
 
+@Mapper(componentModel = "spring")
 public interface GroupMapper {
+
     Group toEntity(GroupRequestCreateDto groupRequestCreateDto);
 
     Group toEntity(GroupRequestUpdateDto groupRequestUpdateDto);
@@ -23,5 +26,5 @@ public interface GroupMapper {
 
     GroupResponseSubjectsDto toSubjectsDto(Group group);
 
-    List<GroupResponseOptionalDto> toListDtos(List<Group> groups);
+    List<GroupResponseOptionalDto> toListOptionalDtos(List<Group> groups);
 }

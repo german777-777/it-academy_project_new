@@ -4,17 +4,28 @@ import com.example.dto.mark.MarkRequestCreateDto;
 import com.example.dto.mark.MarkRequestUpdateDto;
 import com.example.dto.mark.MarkResponseDto;
 import com.example.model.mark.Mark;
+import com.example.service.subjects.SubjectService;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public interface MarkMapper {
+@Mapper(componentModel = "spring")
+public abstract class MarkMapper {
+    @Autowired
+    protected SubjectService subjectService;
 
-    Mark toEntity(MarkRequestCreateDto markRequestCreateDto);
+    @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestCreateDto.subjectId()))")
+    public abstract Mark toEntity(MarkRequestCreateDto markRequestCreateDto);
 
-    Mark toEntity(MarkRequestUpdateDto markRequestUpdateDto);
+    @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestUpdateDto.subjectId()))")
+    public abstract Mark toEntity(MarkRequestUpdateDto markRequestUpdateDto);
 
-    MarkResponseDto toDto(Mark mark);
+    @Mapping(target = "subjectName", expression = "java(mark.getSubject().getName())")
+    public abstract MarkResponseDto toDto(Mark mark);
 
-    List<MarkResponseDto> toListDtos(List<Mark> marks);
+    public abstract List<MarkResponseDto> toListDtos(List<Mark> marks);
+
 
 }

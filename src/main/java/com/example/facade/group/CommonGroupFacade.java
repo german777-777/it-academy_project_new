@@ -51,7 +51,7 @@ public class CommonGroupFacade implements GroupFacade {
     @Override
     @Validate
     public List<GroupResponseOptionalDto> getAllGroups() {
-        return groupMapper.toListDtos(groupService.findAll());
+        return groupMapper.toListOptionalDtos(groupService.findAll());
     }
 
     @Override
