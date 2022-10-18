@@ -4,9 +4,10 @@ import com.example.dto.credentials.CredentialsRequestDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.facade.user.PersonFacade;
 import com.example.security.jwt.JwtProvider;
-import com.example.security.manager.CommonAuthenticationManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -28,7 +29,8 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class SystemController {
     private final PersonFacade personFacade;
-    private final CommonAuthenticationManager authenticationManager;
+    @Qualifier(value = "commonAuthenticationManager")
+    private final AuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
     @PostMapping("/registration")
@@ -46,7 +48,7 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        return new ResponseEntity<>(Map.of("Authentication & authorization were successfully passed!", token), OK);
+        return new ResponseEntity<>(Map.of("Authentication & Authorization were successfully passed!", token), OK);
     }
 
     @PostMapping("/logout")
@@ -54,10 +56,12 @@ public class SystemController {
         SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
         logoutHandler.logout(request, response, null);
 
-        if (logoutHandler.isInvalidateHttpSession() && SecurityContextHolder.getContext().getAuthentication() == null) {
+        if (logoutHandler.isInvalidateHttpSession() &&
+                SecurityContextHolder.getContext().getAuthentication() == null)
+        {
             return new ResponseEntity<>("You are logged out!", OK);
         } else {
-            return new ResponseEntity<>("You are not logged out!", BAD_REQUEST);
+            return new ResponseEntity<>("You are not logged out!", INTERNAL_SERVER_ERROR);
         }
     }
 }

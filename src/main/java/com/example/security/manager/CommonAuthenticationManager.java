@@ -21,7 +21,7 @@ public class CommonAuthenticationManager implements AuthenticationManager {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UserDetails userDetails = personFacade.loadUserByUsername(authentication.getPrincipal().toString());
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
-            throw new NotFoundEntityException("Неправильный пароль!");
+            throw new NotFoundEntityException(" cause not correct password!!");
         }
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
     }

@@ -7,8 +7,6 @@ import com.example.dto.user.person.PersonResponseDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.mapper.user.PersonMapper;
 import com.example.model.users.Person;
-import com.example.model.users.Student;
-import com.example.model.users.Teacher;
 import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,25 +34,21 @@ public class CommonPersonFacade implements PersonFacade {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Person person = personService.findByLogin(username);
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Person person = personService.findByLogin(login);
         return personMapper.toUserDetails(person.getLogin(), person.getPassword(), person.getRoles());
     }
 
     @Override
     @Validate
     public List<PersonResponseDto> getAllStudents() {
-        return personMapper.toListDtos(personService.findAll().stream()
-                .filter(person -> person.getClass().equals(Student.class))
-                .toList());
+        return personMapper.toListDtos(personService.findAllStudents());
     }
 
     @Override
     @Validate
     public List<PersonResponseDto> getAllTeachers() {
-        return personMapper.toListDtos(personService.findAll().stream()
-                .filter(person -> person.getClass().equals(Teacher.class))
-                .toList());
+        return personMapper.toListDtos(personService.findAllTeachers());
     }
 
     @Override

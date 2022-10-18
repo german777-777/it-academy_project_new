@@ -16,7 +16,7 @@ public interface PersonMapper {
 
     PersonResponseDto toDto(Person person);
 
-    List<PersonResponseDto> toListDtos(List<Person> people);
+    List<PersonResponseDto> toListDtos(List<? extends Person> people);
 
     UserDetails toUserDetails(String login, String password, List<Role> roles);
 }

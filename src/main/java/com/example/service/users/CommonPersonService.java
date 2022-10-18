@@ -5,7 +5,9 @@ import com.example.exceptions.DeleteEntityException;
 import com.example.exceptions.NotFoundEntityException;
 import com.example.exceptions.UpdateEntityException;
 import com.example.model.users.Person;
-import com.example.repository.users.PersonRepository;
+import com.example.model.users.Student;
+import com.example.model.users.Teacher;
+import com.example.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -44,6 +46,28 @@ public class CommonPersonService implements PersonService {
     public Person findByLogin(String login) {
         return personRepository.findByLogin(login)
                 .orElseThrow(() -> new NotFoundEntityException(" by login"));
+    }
+
+    @Override
+    public Student findStudentById(Long studentId) {
+        return personRepository.findStudentById(studentId)
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+    }
+
+    @Override
+    public Teacher findTeacherById(Long teacherId) {
+        return personRepository.findTeacherById(teacherId)
+                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+    }
+
+    @Override
+    public List<Student> findAllStudents() {
+        return personRepository.findAllStudents();
+    }
+
+    @Override
+    public List<Teacher> findAllTeachers() {
+        return personRepository.findAllTeachers();
     }
 
     @Override

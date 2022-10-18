@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +61,7 @@ public class CommonPersonMapper implements PersonMapper {
     }
 
     @Override
-    public List<PersonResponseDto> toListDtos(List<Person> people) {
+    public List<PersonResponseDto> toListDtos(List<? extends Person> people) {
         return people.stream()
                 .map(this::toDto)
                 .toList();

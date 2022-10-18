@@ -5,7 +5,7 @@ import com.example.exceptions.NotFoundEntityException;
 import com.example.model.salary.Salary;
 import com.example.model.users.Teacher;
 import com.example.repository.SalaryRepository;
-import com.example.repository.users.PersonRepository;
+import com.example.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
