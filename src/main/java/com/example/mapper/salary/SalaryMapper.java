@@ -12,18 +12,18 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SalaryMapper {
 
-    @Mapping(source = "dateOfIssue", target = "dateOfIssue", expression = "java(salaryRequestCreateDto.dateOfIssue())")
-    @Mapping(source = "count", target = "count", expression = "java(salaryRequestCreateDto.count())")
+    @Mapping(source = "dateOfIssue", target = "dateOfIssue")
+    @Mapping(source = "count", target = "count")
     Salary toEntity(SalaryRequestCreateDto salaryRequestCreateDto);
 
-    @Mapping(source = "id", target = "id", expression = "java(salaryRequestUpdateDto.id())")
-    @Mapping(source = "dateOfIssue", target = "dateOfIssue", expression = "java(salaryRequestUpdateDto.dateOfIssue())")
-    @Mapping(source = "count", target = "count", expression = "java(salaryRequestUpdateDto.count())")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "dateOfIssue", target = "dateOfIssue")
+    @Mapping(source = "count", target = "count")
     Salary toEntity(SalaryRequestUpdateDto salaryRequestUpdateDto);
 
-    @Mapping(source = "id", target = "id", expression = "java(salary.id())")
-    @Mapping(source = "dateOfIssue", target = "dateOfIssue", expression = "java(salary.dateOfIssue())")
-    @Mapping(source = "count", target = "count", expression = "java(salary.count())")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "dateOfIssue", target = "dateOfIssue")
+    @Mapping(source = "count", target = "count")
     SalaryResponseDto toDto(Salary salary);
 
     List<SalaryResponseDto> toListDtos(List<Salary> salaries);

@@ -1,4 +1,12 @@
 package com.example.dto.group;
 
-public record GroupRequestUpdateDto() {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+public record GroupRequestUpdateDto(
+        @NotNull
+        Long id,
+        @NotBlank
+        String name
+) {
 }

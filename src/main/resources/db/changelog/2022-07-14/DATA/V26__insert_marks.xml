@@ -24,7 +24,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student1' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">8</column>
@@ -35,7 +35,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student2' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">5</column>
@@ -46,7 +46,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student3' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">7</column>
@@ -57,7 +57,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student4' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">8</column>
@@ -67,7 +67,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student5' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">10</column>
@@ -78,7 +78,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student6' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">9</column>
@@ -89,7 +89,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student7' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-01</column>
                 <column name="count">10</column>
@@ -100,7 +100,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student8' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">8</column>
@@ -111,7 +111,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student9' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">8</column>
@@ -122,7 +122,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student10' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">8</column>
@@ -133,7 +133,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student11' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">9</column>
@@ -144,7 +144,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student12' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">10</column>
@@ -155,7 +155,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student13' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">10</column>
@@ -166,7 +166,7 @@
                 <column name="student_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Student14' AND r.name = 'STUDENT')"/>
                 <column name="date_of_issue">2022-07-02</column>
                 <column name="count">10</column>

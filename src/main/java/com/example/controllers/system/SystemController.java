@@ -4,10 +4,9 @@ import com.example.dto.credentials.CredentialsRequestDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.facade.user.PersonFacade;
 import com.example.security.jwt.JwtProvider;
+import com.example.security.manager.CommonAuthenticationManager;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -29,8 +28,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class SystemController {
     private final PersonFacade personFacade;
-    @Qualifier(value = "commonAuthenticationManager")
-    private final AuthenticationManager authenticationManager;
+    private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
     @PostMapping("/registration")

@@ -12,15 +12,15 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface SubjectMapper {
 
-    @Mapping(source = "name", target = "name", expression = "java(subjectRequestCreateDto.name())")
+    @Mapping(source = "name", target = "name")
     Subject toEntity(SubjectRequestCreateDto subjectRequestCreateDto);
 
-    @Mapping(source = "id", target = "id", expression = "java(subject.getId())")
-    @Mapping(source = "name", target = "name", expression = "java(subject.getName())")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
     Subject toEntity(SubjectRequestUpdateDto subjectRequestUpdateDto);
 
-    @Mapping(source = "id", target = "id", expression = "java(subject.getId())")
-    @Mapping(source = "name", target = "name", expression = "java(subject.getName())")
+    @Mapping(source = "id", target = "id")
+    @Mapping(source = "name", target = "name")
     SubjectResponseDto toDto(Subject subject);
 
     List<SubjectResponseDto> toListDtos(List<Subject> subjects);

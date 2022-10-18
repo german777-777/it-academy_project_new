@@ -5,7 +5,7 @@ import com.example.exceptions.NotFoundEntityException;
 import com.example.model.mark.Mark;
 import com.example.model.users.Student;
 import com.example.repository.MarkRepository;
-import com.example.repository.PersonRepository;
+import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import static org.springframework.transaction.annotation.Isolation.REPEATABLE_RE
 @RequiredArgsConstructor
 public class CommonMarkService implements MarkService {
     private final MarkRepository markRepository;
-    private final PersonRepository personRepository;
+    private final PersonService personService;
 
     @Override
     @Transactional
@@ -35,9 +35,7 @@ public class CommonMarkService implements MarkService {
 
     @Override
     public List<Mark> findByStudentId(Long studentId) {
-        Student student = (Student) personRepository.findById(studentId)
-                .filter(person -> person.getClass().equals(Student.class))
-                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+        Student student = personService.findStudentById(studentId);
         return student.getMarks();
     }
 
@@ -62,11 +60,10 @@ public class CommonMarkService implements MarkService {
     }
 
     private void saveStudentWithNewMark(Long studentId, Mark mark) {
-        Student student = (Student) (personRepository.findById(studentId)
-                .orElseThrow(() -> new NotFoundEntityException(" by id")));
+        Student student = personService.findStudentById(studentId);
 
         student.addMark(mark);
 
-        personRepository.save(student);
+        personService.save(student);
     }
 }

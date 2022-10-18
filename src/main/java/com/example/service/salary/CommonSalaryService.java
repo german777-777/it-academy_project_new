@@ -5,7 +5,7 @@ import com.example.exceptions.NotFoundEntityException;
 import com.example.model.salary.Salary;
 import com.example.model.users.Teacher;
 import com.example.repository.SalaryRepository;
-import com.example.repository.PersonRepository;
+import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ import static org.springframework.transaction.annotation.Isolation.REPEATABLE_RE
 public class CommonSalaryService implements SalaryService {
 
     private final SalaryRepository salaryRepository;
-    private final PersonRepository personRepository;
+    private final PersonService personService;
 
     @Override
     @Transactional
@@ -41,9 +41,7 @@ public class CommonSalaryService implements SalaryService {
 
     @Override
     public List<Salary> findByTeacherId(Long teacherId) {
-        Teacher teacher = (Teacher) personRepository.findById(teacherId)
-                .filter(person -> person.getClass().equals(Teacher.class))
-                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+        Teacher teacher = personService.findTeacherById(teacherId);
         return teacher.getSalaries();
     }
 
@@ -63,11 +61,10 @@ public class CommonSalaryService implements SalaryService {
     }
 
     private void saveTeacherWithNewSalary(Long teacherId, Salary salary) {
-        Teacher teacher = (Teacher) (personRepository.findById(teacherId)
-                .orElseThrow(() -> new NotFoundEntityException(" by id")));
+        Teacher teacher = personService.findTeacherById(teacherId);
 
         teacher.addSalary(salary);
 
-        personRepository.save(teacher);
+        personService.save(teacher);
     }
 }

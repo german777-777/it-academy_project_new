@@ -1,4 +1,4 @@
-package com.example.dto.group;
+package com.example.dto.group.response;
 
 import com.example.model.users.Teacher;
 
@@ -6,12 +6,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-public record GroupResponseDto(
+public record GroupResponseTeachersDto(
         @NotNull
         Long id,
         @NotBlank
         String name,
-        @NotNull
         List<Teacher> teachers
 ) {
 }

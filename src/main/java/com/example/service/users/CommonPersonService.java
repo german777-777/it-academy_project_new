@@ -8,7 +8,6 @@ import com.example.model.users.Person;
 import com.example.model.users.Student;
 import com.example.model.users.Teacher;
 import com.example.repository.PersonRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,11 +19,14 @@ import static java.lang.Boolean.TRUE;
 import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
 @Service
-@RequiredArgsConstructor
 public class CommonPersonService implements PersonService {
-
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public CommonPersonService(PersonRepository personRepository, PasswordEncoder passwordEncoder) {
+        this.personRepository = personRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     @Transactional

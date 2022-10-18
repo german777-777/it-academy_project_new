@@ -248,7 +248,7 @@
 
             <insert tableName="groups_subjects">
                 <column name="group_id" valueComputed="(SELECT g.id FROM groups g WHERE g.name = 'Other tools Group')"/>
-                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Docker Compose Security')"/>
+                <column name="subject_id" valueComputed="(SELECT s.id FROM subjects s WHERE s.name = 'Docker Compose')"/>
             </insert>
 
             <insert tableName="groups_subjects">

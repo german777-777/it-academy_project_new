@@ -24,7 +24,7 @@
             <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Teacher1' AND r.name = 'TEACHER')"/>
         </insert>
 
@@ -33,7 +33,7 @@
             <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Teacher2' AND r.name = 'TEACHER')"/>
         </insert>
 
@@ -42,7 +42,7 @@
             <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Teacher3' AND r.name = 'TEACHER')"/>
         </insert>
 
@@ -51,7 +51,7 @@
             <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Teacher4' AND r.name = 'TEACHER')"/>
         </insert>
 
@@ -60,7 +60,7 @@
             <column name="teacher_id" valueComputed="(SELECT u.id FROM users u
                     LEFT JOIN credentials c ON u.credential_id = c.id
                     LEFT JOIN users_roles ur ON u.id = ur.user_id
-                        LEFT JOIN roles r ON ur.user_id = r.id
+                        LEFT JOIN roles r on ur.role_id = r.id
                     WHERE c.login = 'Teacher5' AND r.name = 'TEACHER')"/>
         </insert>
 

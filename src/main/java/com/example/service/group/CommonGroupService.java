@@ -4,10 +4,15 @@ import com.example.exceptions.CreateEntityException;
 import com.example.exceptions.DeleteEntityException;
 import com.example.exceptions.NotFoundEntityException;
 import com.example.model.group.Group;
+import com.example.model.subject.Subject;
+import com.example.model.users.Student;
+import com.example.model.users.Teacher;
 import com.example.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -36,7 +41,28 @@ public class CommonGroupService implements GroupService {
 
     @Override
     public Group findByName(String name) {
-        return groupRepository.findByName(name).orElseThrow(() -> new NotFoundEntityException(" by name"));
+        return groupRepository.findByName(name)
+                .orElseThrow(() -> new NotFoundEntityException(" by name"));
+    }
+
+    @Override
+    public List<Student> findAllStudentsByGroupId(Long groupId) {
+        return findById(groupId).getStudents();
+    }
+
+    @Override
+    public List<Teacher> findAllTeachersByGroupId(Long groupId) {
+        return findById(groupId).getTeachers();
+    }
+
+    @Override
+    public List<Subject> findAllSubjectsByGroupId(Long groupId) {
+        return findById(groupId).getSubjects();
+    }
+
+    @Override
+    public List<Group> findAll() {
+        return groupRepository.findAll();
     }
 
     @Override

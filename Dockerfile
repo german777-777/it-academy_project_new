@@ -14,6 +14,6 @@ ARG JAR=target/it-academy_project-0.0.1-SNAPSHOT.jar
 COPY --from=build ${JAR} project.jar
 RUN echo "#!/bin/bash" >> up.sh
 RUN echo "sleep \$ENTRY_DELAY" >> up.sh
-RUN echo "java -jar app.jar" >> up.sh
+RUN echo "java -jar project.jar" >> up.sh
 RUN chmod +x up.sh
 ENTRYPOINT ["/up.sh"]

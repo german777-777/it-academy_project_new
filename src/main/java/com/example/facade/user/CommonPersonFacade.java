@@ -17,7 +17,6 @@ import java.util.List;
 @Facade
 @RequiredArgsConstructor
 public class CommonPersonFacade implements PersonFacade {
-
     private final PersonService personService;
     private final PersonMapper personMapper;
 

@@ -10,13 +10,10 @@ public interface PersonService {
     Person save(Person person);
     Person findById(Long id);
     Person findByLogin(String login);
-
     Student findStudentById(Long studentId);
     Teacher findTeacherById(Long teacherId);
-
     List<Student> findAllStudents();
     List<Teacher> findAllTeachers();
-
     List<Person> findAll();
     Person update(Person person);
     boolean delete(Long id);
