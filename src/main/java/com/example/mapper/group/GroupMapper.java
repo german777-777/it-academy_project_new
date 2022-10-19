@@ -1,10 +1,10 @@
 package com.example.mapper.group;
 
-import com.example.dto.group.GroupRequestCreateDto;
-import com.example.dto.group.GroupRequestUpdateDto;
-import com.example.dto.group.GroupResponseDto;
-import com.example.dto.subject.SubjectResponseDto;
-import com.example.dto.user.person.PersonResponseDto;
+import com.example.dto.rest.group.GroupRequestCreateDto;
+import com.example.dto.rest.group.GroupRequestUpdateDto;
+import com.example.dto.rest.group.GroupResponseDto;
+import com.example.dto.rest.subject.SubjectResponseDto;
+import com.example.dto.rest.user.person.PersonResponseDto;
 import com.example.mapper.subject.SubjectMapper;
 import com.example.mapper.user.PersonMapper;
 import com.example.model.group.Group;

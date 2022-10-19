@@ -11,7 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static com.example.util.constant.Constants.PUBLIC_URLS;
+import static com.example.util.constant.Constants.PUBLIC_URLS_REST;
+import static com.example.util.constant.Constants.PUBLIC_URL_NON_REST;
 
 @RequiredArgsConstructor
 @Configuration
@@ -28,7 +29,9 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationManager(authenticationManager)
-                .authorizeRequests().antMatchers(PUBLIC_URLS).permitAll()
+                .authorizeRequests()
+                .antMatchers(PUBLIC_URLS_REST).permitAll()
+                .antMatchers(PUBLIC_URL_NON_REST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .apply(configurer);

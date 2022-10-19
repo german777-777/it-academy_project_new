@@ -1,7 +1,7 @@
 package com.example.mapper.mark;
 
-import com.example.dto.mark.MarkRequestCreateDto;
-import com.example.dto.mark.MarkResponseDto;
+import com.example.dto.rest.mark.MarkRequestCreateDto;
+import com.example.dto.rest.mark.MarkResponseDto;
 import com.example.model.mark.Mark;
 import com.example.service.subjects.SubjectService;
 import org.mapstruct.Mapper;

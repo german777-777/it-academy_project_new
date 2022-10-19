@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedAttributeNode;
@@ -19,6 +20,7 @@ import java.util.List;
         name = "teacher-with-salaries",
         attributeNodes = {@NamedAttributeNode(value = "salaries")}
 )
+@DiscriminatorValue("3")
 public class Teacher extends Person {
     @OneToMany
     @JoinColumn(name = "teacher_id")

@@ -3,7 +3,6 @@ package com.example.model.users;
 import com.example.model.users.credentials.Credentials;
 import com.example.model.users.roles.Role;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +10,9 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,12 +35,13 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "public")
+@DiscriminatorColumn(name = "discriminator_column", discriminatorType = DiscriminatorType.INTEGER, columnDefinition = "TINYINT(1)")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @EqualsAndHashCode.Include
+    @Column(name = "id")
     private Long id;
 
     private String firstName;

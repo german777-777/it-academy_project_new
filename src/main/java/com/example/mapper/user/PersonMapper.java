@@ -1,7 +1,7 @@
 package com.example.mapper.user;
 
-import com.example.dto.user.person.PersonResponseDto;
-import com.example.dto.user.system.PersonRequestCreateDto;
+import com.example.dto.rest.user.person.PersonResponseDto;
+import com.example.dto.rest.user.system.PersonRequestCreateDto;
 import com.example.exceptions.CreateEntityException;
 import com.example.model.users.Person;
 import com.example.model.users.Student;

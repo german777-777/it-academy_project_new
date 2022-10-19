@@ -2,10 +2,12 @@ package com.example.model.users;
 
 import lombok.Getter;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Getter
 @Entity
+@DiscriminatorValue("1")
 public class Admin extends Person {
     @Override
     public String toString() {

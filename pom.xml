@@ -14,6 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>it-academy_project</name>
     <description>IT-Academy Project</description>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>17</java.version>

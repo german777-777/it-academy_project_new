@@ -38,6 +38,9 @@
                              nullable="false"
                              uniqueConstraintName="unique__fkey__credentials"/>
             </column>
+            <column name="discriminator_column" type="tinyint(1)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
         
         <addForeignKeyConstraint baseTableName="users" baseColumnNames="credential_id" constraintName="users__credentials__fkey"

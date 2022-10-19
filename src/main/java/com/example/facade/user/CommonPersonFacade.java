@@ -2,9 +2,9 @@ package com.example.facade.user;
 
 import com.example.annotation.Facade;
 import com.example.annotation.Validate;
-import com.example.dto.user.person.PersonRequestUpdateDto;
-import com.example.dto.user.person.PersonResponseDto;
-import com.example.dto.user.system.PersonRequestCreateDto;
+import com.example.dto.rest.user.person.PersonRequestUpdateDto;
+import com.example.dto.rest.user.person.PersonResponseDto;
+import com.example.dto.rest.user.system.PersonRequestCreateDto;
 import com.example.exceptions.ValidationException;
 import com.example.mapper.user.PersonMapper;
 import com.example.model.users.Person;

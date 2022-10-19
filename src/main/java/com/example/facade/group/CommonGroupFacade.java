@@ -2,11 +2,11 @@ package com.example.facade.group;
 
 import com.example.annotation.Facade;
 import com.example.annotation.Validate;
-import com.example.dto.group.GroupRequestCreateDto;
-import com.example.dto.group.GroupRequestUpdateDto;
-import com.example.dto.group.GroupResponseDto;
-import com.example.dto.subject.SubjectResponseDto;
-import com.example.dto.user.person.PersonResponseDto;
+import com.example.dto.rest.group.GroupRequestCreateDto;
+import com.example.dto.rest.group.GroupRequestUpdateDto;
+import com.example.dto.rest.group.GroupResponseDto;
+import com.example.dto.rest.subject.SubjectResponseDto;
+import com.example.dto.rest.user.person.PersonResponseDto;
 import com.example.mapper.group.GroupMapper;
 import com.example.service.group.GroupService;
 import lombok.RequiredArgsConstructor;

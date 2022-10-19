@@ -1,7 +1,7 @@
 package com.example.mapper.salary;
 
-import com.example.dto.salary.SalaryRequestCreateDto;
-import com.example.dto.salary.SalaryResponseDto;
+import com.example.dto.rest.salary.SalaryRequestCreateDto;
+import com.example.dto.rest.salary.SalaryResponseDto;
 import com.example.model.salary.Salary;
 import org.mapstruct.Mapper;
 

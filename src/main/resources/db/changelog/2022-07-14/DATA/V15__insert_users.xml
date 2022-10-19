@@ -22,6 +22,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2001-08-07</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Admin')"/>
+            <column name="discriminator_column" value="1"/>
         </insert>
 
         <insert tableName="users">
@@ -30,6 +31,7 @@
             <column name="patronymic">Andreevich</column>
             <column name="birth_date">2004-01-12</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student1')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -38,6 +40,7 @@
             <column name="patronymic">Mikhailovich</column>
             <column name="birth_date">2002-05-29</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student2')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -46,6 +49,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2001-07-19</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student3')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -54,6 +58,7 @@
             <column name="patronymic">Gennadievich</column>
             <column name="birth_date">2004-02-20</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student4')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -62,6 +67,7 @@
             <column name="patronymic">Alexeevitch</column>
             <column name="birth_date">2005-10-13</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student5')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -70,6 +76,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2003-04-08</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student6')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -78,6 +85,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2002-07-14</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student7')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -86,6 +94,7 @@
             <column name="patronymic">Anatolievich</column>
             <column name="birth_date">2005-11-08</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student8')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -94,6 +103,7 @@
             <column name="patronymic">Yegorovich</column>
             <column name="birth_date">2004-03-27</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student9')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -102,6 +112,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2001-07-08</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student10')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -110,6 +121,7 @@
             <column name="patronymic">Yegorovich</column>
             <column name="birth_date">2002-06-17</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student11')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -118,6 +130,7 @@
             <column name="patronymic">Ivanovich</column>
             <column name="birth_date">2001-07-08</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student12')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -126,6 +139,7 @@
             <column name="patronymic">Alexeyevich</column>
             <column name="birth_date">2004-08-15</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student13')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -134,6 +148,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">2005-12-23</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Student14')"/>
+            <column name="discriminator_column" value="2"/>
         </insert>
 
         <insert tableName="users">
@@ -142,6 +157,7 @@
             <column name="patronymic">Grigorievich</column>
             <column name="birth_date">1986-12-12</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher1')"/>
+            <column name="discriminator_column" value="3"/>
         </insert>
 
         <insert tableName="users">
@@ -150,6 +166,7 @@
             <column name="patronymic">Olegovich</column>
             <column name="birth_date">1975-12-10</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher2')"/>
+            <column name="discriminator_column" value="3"/>
         </insert>
 
         <insert tableName="users">
@@ -158,6 +175,7 @@
             <column name="patronymic">Dmitrievich</column>
             <column name="birth_date">1978-08-08</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher3')"/>
+            <column name="discriminator_column" value="3"/>
         </insert>
 
         <insert tableName="users">
@@ -166,6 +184,7 @@
             <column name="patronymic">Pavlovich</column>
             <column name="birth_date">1968-07-20</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher4')"/>
+            <column name="discriminator_column" value="3"/>
         </insert>
 
         <insert tableName="users">
@@ -174,6 +193,7 @@
             <column name="patronymic">Alexeyevich</column>
             <column name="birth_date">1964-11-11</column>
             <column name="credential_id" valueComputed="(SELECT c.id FROM credentials c WHERE c.login = 'Teacher5')"/>
+            <column name="discriminator_column" value="3"/>
         </insert>
 
     </changeSet>

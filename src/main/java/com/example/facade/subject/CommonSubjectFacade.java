@@ -2,9 +2,9 @@ package com.example.facade.subject;
 
 import com.example.annotation.Facade;
 import com.example.annotation.Validate;
-import com.example.dto.subject.SubjectRequestCreateDto;
-import com.example.dto.subject.SubjectRequestUpdateDto;
-import com.example.dto.subject.SubjectResponseDto;
+import com.example.dto.rest.subject.SubjectRequestCreateDto;
+import com.example.dto.rest.subject.SubjectRequestUpdateDto;
+import com.example.dto.rest.subject.SubjectResponseDto;
 import com.example.mapper.subject.SubjectMapper;
 import com.example.service.subjects.SubjectService;
 import lombok.RequiredArgsConstructor;

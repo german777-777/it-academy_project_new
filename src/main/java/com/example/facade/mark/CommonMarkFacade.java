@@ -2,9 +2,9 @@ package com.example.facade.mark;
 
 import com.example.annotation.Facade;
 import com.example.annotation.Validate;
-import com.example.dto.mark.MarkRequestCreateDto;
-import com.example.dto.mark.MarkRequestUpdateDto;
-import com.example.dto.mark.MarkResponseDto;
+import com.example.dto.rest.mark.MarkRequestCreateDto;
+import com.example.dto.rest.mark.MarkRequestUpdateDto;
+import com.example.dto.rest.mark.MarkResponseDto;
 import com.example.exceptions.ValidationException;
 import com.example.mapper.mark.MarkMapper;
 import com.example.model.mark.Mark;

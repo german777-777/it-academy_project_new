@@ -4,13 +4,21 @@ import lombok.experimental.UtilityClass;
 
 @UtilityClass
 public class Constants {
-    public static final String[] PUBLIC_URLS = {
-            "/api/system/**",
+    public static final String[] PUBLIC_URLS_REST = {
+            "/api/v1/system/**",
             "/swagger-ui/**",
             "/v2/api-docs/**",
             "/v3/api-docs/**",
             "/swagger-resources/**",
             "/webjars/**"
+    };
+
+    public static final String[] PUBLIC_URL_NON_REST = {
+            "/",
+            "/index.jsp",
+            "/login.jsp",
+            "/api/system/**",
+            "/registration.jsp"
     };
 
     public static final String BY_ID_MESSAGE = " by id";
