@@ -1,7 +1,6 @@
 package com.example.model.users;
 
 import com.example.model.mark.Mark;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -15,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @NamedEntityGraph(
         name = "student-with-marks",
@@ -42,5 +40,15 @@ public class Student extends Person {
     @Override
     public String toString() {
         return super.toString() + ", marks: " + marks.toString() + "]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }
