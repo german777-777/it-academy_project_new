@@ -21,18 +21,6 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
     Optional<Group> findById(Long id);
 
     /**
-     * Method for finding group with its subtypes ({@link java.util.List} of students, {@link java.util.List} of teachers, {@link java.util.List} subjects)
-     * @param name group name
-     * @return {@link java.util.Optional<com.example.model.group.Group>} -- group-wrapper, for safe checking group on higher level
-     */
-    @EntityGraph(
-            type = EntityGraph.EntityGraphType.LOAD,
-            attributePaths = {"teachers", "students", "subjects"}
-    )
-    @Query(value = "SELECT g FROM Group g WHERE g.name = ?1")
-    Optional<Group> findByName(String name);
-
-    /**
      * @param id  group identifier
      * @return {@link java.lang.Boolean} type, which indicates that group exists or not
      */

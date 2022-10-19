@@ -25,19 +25,16 @@ public class CommonSubjectFacade implements SubjectFacade {
     }
 
     @Override
-    @Validate
     public SubjectResponseDto getSubjectById(Long id) {
         return subjectMapper.toDto(subjectService.findById(id));
     }
 
     @Override
-    @Validate
     public SubjectResponseDto getSubjectByName(String name) {
         return subjectMapper.toDto(subjectService.findByName(name));
     }
 
     @Override
-    @Validate
     public List<SubjectResponseDto> getAllSubjects() {
         return subjectMapper.toListDtos(subjectService.findAll());
     }

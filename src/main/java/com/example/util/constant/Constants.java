@@ -19,4 +19,5 @@ public class Constants {
     public static final String ALREADY_EXISTING_WITH_NAME_MESSAGE = " cause already existing with this name";
     public static final String ALREADY_EXISTING_WITH_LOGIN_MESSAGE = " cause already existing with this login";
     public static final String NOT_EXISTING_WITH_THIS_ID = " cause not exists with this id";
+    public static final String NOT_VALID_DATA_MESSAGE = " cause not valid data";
 }

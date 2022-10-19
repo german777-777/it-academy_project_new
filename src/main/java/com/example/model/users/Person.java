@@ -71,6 +71,10 @@ public abstract class Person {
         return this.credentials.getPassword();
     }
 
+    public void setLogin(String login) {
+        this.credentials.setLogin(login);
+    }
+
     public void setPassword(String password) {
         this.credentials.setPassword(password);
     }

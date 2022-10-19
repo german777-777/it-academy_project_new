@@ -1,7 +1,6 @@
 package com.example.mapper.mark;
 
 import com.example.dto.mark.MarkRequestCreateDto;
-import com.example.dto.mark.MarkRequestUpdateDto;
 import com.example.dto.mark.MarkResponseDto;
 import com.example.model.mark.Mark;
 import com.example.service.subjects.SubjectService;
@@ -18,9 +17,6 @@ public abstract class MarkMapper {
 
     @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestCreateDto.subjectId()))")
     public abstract Mark toEntity(MarkRequestCreateDto markRequestCreateDto);
-
-    @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestUpdateDto.subjectId()))")
-    public abstract Mark toEntity(MarkRequestUpdateDto markRequestUpdateDto);
 
     @Mapping(target = "subjectName", expression = "java(mark.getSubject().getName())")
     public abstract MarkResponseDto toDto(Mark mark);

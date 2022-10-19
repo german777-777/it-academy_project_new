@@ -5,11 +5,15 @@ import com.example.annotation.Validate;
 import com.example.dto.mark.MarkRequestCreateDto;
 import com.example.dto.mark.MarkRequestUpdateDto;
 import com.example.dto.mark.MarkResponseDto;
+import com.example.exceptions.ValidationException;
 import com.example.mapper.mark.MarkMapper;
+import com.example.model.mark.Mark;
 import com.example.service.marks.MarkService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
+
+import static com.example.util.constant.Constants.NOT_VALID_DATA_MESSAGE;
 
 @Facade
 @RequiredArgsConstructor
@@ -25,19 +29,16 @@ public class CommonMarkFacade implements MarkFacade {
     }
 
     @Override
-    @Validate
     public MarkResponseDto getMarkById(Long id) {
         return markMapper.toDto(markService.findById(id));
     }
 
     @Override
-    @Validate
     public List<MarkResponseDto> getAllMarks() {
         return markMapper.toListDtos(markService.findAll());
     }
 
     @Override
-    @Validate
     public List<MarkResponseDto> getAllMarksByStudentId(Long studentId) {
         return markMapper.toListDtos(markService.findByStudentId(studentId));
     }
@@ -45,11 +46,29 @@ public class CommonMarkFacade implements MarkFacade {
     @Override
     @Validate
     public void updateMarks(MarkRequestUpdateDto markRequestUpdateDto) {
-        markService.save(markRequestUpdateDto.studentId(), markMapper.toEntity(markRequestUpdateDto));
+        Mark mark = markService.findById(markRequestUpdateDto.id());
+
+        checkMarkUpdateRequestParameters(markRequestUpdateDto, mark);
+
+        markService.save(markRequestUpdateDto.studentId(), mark);
     }
 
     @Override
     public void deleteMark(Long id) {
         markService.delete(id);
+    }
+
+    private void checkMarkUpdateRequestParameters(MarkRequestUpdateDto markRequestUpdateDto, Mark mark) {
+        if (markRequestUpdateDto.dateOfIssue() == null && markRequestUpdateDto.count() == null) {
+            throw new ValidationException(NOT_VALID_DATA_MESSAGE);
+        }
+
+        if (markRequestUpdateDto.dateOfIssue() != null) {
+            mark.setDateOfIssue(markRequestUpdateDto.dateOfIssue());
+        }
+
+        if (markRequestUpdateDto.count() != null) {
+            mark.setCount(markRequestUpdateDto.count());
+        }
     }
 }

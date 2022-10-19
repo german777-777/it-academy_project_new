@@ -4,10 +4,9 @@ import com.example.annotation.Facade;
 import com.example.annotation.Validate;
 import com.example.dto.group.GroupRequestCreateDto;
 import com.example.dto.group.GroupRequestUpdateDto;
-import com.example.dto.group.response.GroupResponseOptionalDto;
-import com.example.dto.group.response.GroupResponseStudentsDto;
-import com.example.dto.group.response.GroupResponseSubjectsDto;
-import com.example.dto.group.response.GroupResponseTeachersDto;
+import com.example.dto.group.GroupResponseDto;
+import com.example.dto.subject.SubjectResponseDto;
+import com.example.dto.user.person.PersonResponseDto;
 import com.example.mapper.group.GroupMapper;
 import com.example.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
@@ -28,33 +27,28 @@ public class CommonGroupFacade implements GroupFacade {
     }
 
     @Override
-    @Validate
-    public GroupResponseOptionalDto getGroupById(Long id) {
-        return groupMapper.toOptionalDto(groupService.findById(id));
+    public GroupResponseDto getGroupById(Long id) {
+        return groupMapper.toDto(groupService.findById(id));
     }
 
     @Override
-    @Validate
-    public GroupResponseStudentsDto getStudentsByGroupId(Long groupId) {
-        return groupMapper.toStudentsDto(groupService.findById(groupId));
+    public List<PersonResponseDto> getStudentsByGroupId(Long groupId) {
+        return groupMapper.toStudentsDtos(groupService.findAllStudentsByGroupId(groupId));
     }
 
     @Override
-    @Validate
-    public GroupResponseTeachersDto getTeachersByGroupId(Long groupId) {
-        return groupMapper.toTeachersDto(groupService.findById(groupId));
+    public List<PersonResponseDto> getTeachersByGroupId(Long groupId) {
+        return groupMapper.toTeachersDtos(groupService.findAllTeachersByGroupId(groupId));
     }
 
     @Override
-    @Validate
-    public GroupResponseSubjectsDto getSubjectsByGroupId(Long groupId) {
-        return groupMapper.toSubjectsDto(groupService.findById(groupId));
+    public List<SubjectResponseDto> getSubjectsByGroupId(Long groupId) {
+        return groupMapper.toSubjectsDtos(groupService.findAllSubjectsByGroupId(groupId));
     }
 
     @Override
-    @Validate
-    public List<GroupResponseOptionalDto> getAllGroups() {
-        return groupMapper.toListOptionalDtos(groupService.findAll());
+    public List<GroupResponseDto> getAllGroups() {
+        return groupMapper.toListDtos(groupService.findAll());
     }
 
     @Override

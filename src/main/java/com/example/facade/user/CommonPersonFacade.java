@@ -5,6 +5,7 @@ import com.example.annotation.Validate;
 import com.example.dto.user.person.PersonRequestUpdateDto;
 import com.example.dto.user.person.PersonResponseDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
+import com.example.exceptions.ValidationException;
 import com.example.mapper.user.PersonMapper;
 import com.example.model.users.Person;
 import com.example.service.users.PersonService;
@@ -14,20 +15,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
+import static com.example.util.constant.Constants.NOT_VALID_DATA_MESSAGE;
+
 @Facade
 @RequiredArgsConstructor
 public class CommonPersonFacade implements PersonFacade {
     private final PersonService personService;
     private final PersonMapper personMapper;
 
-    @Validate
     @Override
+    @Validate
     public void savePerson(PersonRequestCreateDto personRequestCreateDto) {
         personService.save(personMapper.toEntity(personRequestCreateDto));
     }
 
     @Override
-    @Validate
     public PersonResponseDto getPersonById(Long id) {
         return personMapper.toDto(personService.findById(id));
     }
@@ -39,13 +41,11 @@ public class CommonPersonFacade implements PersonFacade {
     }
 
     @Override
-    @Validate
     public List<PersonResponseDto> getAllStudents() {
         return personMapper.toListDtos(personService.findAllStudents());
     }
 
     @Override
-    @Validate
     public List<PersonResponseDto> getAllTeachers() {
         return personMapper.toListDtos(personService.findAllTeachers());
     }
@@ -53,7 +53,47 @@ public class CommonPersonFacade implements PersonFacade {
     @Override
     @Validate
     public void updatePerson(PersonRequestUpdateDto personRequestUpdateDto) {
-        personService.update(personMapper.toEntity(personRequestUpdateDto));
+        Person person = personService.findById(personRequestUpdateDto.id());
+
+        checkPersonUpdateRequestParameters(personRequestUpdateDto, person);
+
+        personService.update(person);
+    }
+
+    private void checkPersonUpdateRequestParameters(PersonRequestUpdateDto personRequestUpdateDto, Person person) {
+        if (personRequestUpdateDto.firstName() == null
+                && personRequestUpdateDto.lastName() == null
+                && personRequestUpdateDto.patronymic() == null
+                && personRequestUpdateDto.birthDate() == null
+                && personRequestUpdateDto.login() == null
+                && personRequestUpdateDto.password() == null
+        ) {
+            throw new ValidationException(NOT_VALID_DATA_MESSAGE);
+        }
+
+        if (personRequestUpdateDto.firstName() != null) {
+            person.setFirstName(personRequestUpdateDto.firstName());
+        }
+
+        if (personRequestUpdateDto.lastName() != null) {
+            person.setLastName(personRequestUpdateDto.lastName());
+        }
+
+        if (personRequestUpdateDto.patronymic() != null) {
+            person.setPatronymic(personRequestUpdateDto.patronymic());
+        }
+
+        if (personRequestUpdateDto.birthDate() != null) {
+            person.setBirthDate(personRequestUpdateDto.birthDate());
+        }
+
+        if (personRequestUpdateDto.login() != null) {
+            person.setLogin(personRequestUpdateDto.login());
+        }
+
+        if (personRequestUpdateDto.password() != null) {
+            person.setPassword(personRequestUpdateDto.password());
+        }
     }
 
     @Override

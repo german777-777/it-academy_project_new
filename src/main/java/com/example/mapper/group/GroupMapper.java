@@ -2,29 +2,42 @@ package com.example.mapper.group;
 
 import com.example.dto.group.GroupRequestCreateDto;
 import com.example.dto.group.GroupRequestUpdateDto;
-import com.example.dto.group.response.GroupResponseOptionalDto;
-import com.example.dto.group.response.GroupResponseStudentsDto;
-import com.example.dto.group.response.GroupResponseSubjectsDto;
-import com.example.dto.group.response.GroupResponseTeachersDto;
+import com.example.dto.group.GroupResponseDto;
+import com.example.dto.subject.SubjectResponseDto;
+import com.example.dto.user.person.PersonResponseDto;
+import com.example.mapper.subject.SubjectMapper;
+import com.example.mapper.user.PersonMapper;
 import com.example.model.group.Group;
+import com.example.model.subject.Subject;
+import com.example.model.users.Student;
+import com.example.model.users.Teacher;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface GroupMapper {
+public abstract class GroupMapper {
 
-    Group toEntity(GroupRequestCreateDto groupRequestCreateDto);
+    protected PersonMapper personMapper;
+    protected SubjectMapper subjectMapper;
 
-    Group toEntity(GroupRequestUpdateDto groupRequestUpdateDto);
+    public abstract Group toEntity(GroupRequestCreateDto groupRequestCreateDto);
 
-    GroupResponseOptionalDto toOptionalDto(Group group);
+    public abstract Group toEntity(GroupRequestUpdateDto groupRequestUpdateDto);
 
-    GroupResponseStudentsDto toStudentsDto(Group group);
+    public abstract GroupResponseDto toDto(Group group);
 
-    GroupResponseTeachersDto toTeachersDto(Group group);
+    public abstract List<GroupResponseDto> toListDtos(List<Group> groups);
 
-    GroupResponseSubjectsDto toSubjectsDto(Group group);
+    public List<PersonResponseDto> toStudentsDtos(List<Student> students) {
+        return personMapper.toListDtos(students);
+    }
 
-    List<GroupResponseOptionalDto> toListOptionalDtos(List<Group> groups);
+    public List<PersonResponseDto> toTeachersDtos(List<Teacher> teachers) {
+        return personMapper.toListDtos(teachers);
+    }
+
+    public List<SubjectResponseDto> toSubjectsDtos(List<Subject> subjects) {
+        return subjectMapper.toListDtos(subjects);
+    }
 }

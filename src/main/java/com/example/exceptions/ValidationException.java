@@ -10,7 +10,11 @@ import java.util.Set;
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class ValidationException extends ApiException {
-    private final transient Set<ConstraintViolation<Object>> violations;
+    private transient Set<ConstraintViolation<Object>> violations;
+
+    public ValidationException(String message) {
+        super(BAD_REQUEST, message);
+    }
 
     public ValidationException(Set<ConstraintViolation<Object>> violations) {
         super(BAD_REQUEST, "Not correct data");

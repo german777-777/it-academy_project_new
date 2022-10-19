@@ -10,7 +10,6 @@ import java.util.List;
 public interface GroupService {
     Group save(Group group);
     Group findById(Long id);
-    Group findByName(String name);
     List<Student> findAllStudentsByGroupId(Long groupId);
     List<Teacher> findAllTeachersByGroupId(Long groupId);
     List<Subject> findAllSubjectsByGroupId(Long groupId);

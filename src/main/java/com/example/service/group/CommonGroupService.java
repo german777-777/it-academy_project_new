@@ -16,7 +16,6 @@ import java.util.List;
 
 import static com.example.util.constant.Constants.ALREADY_EXISTING_WITH_NAME_MESSAGE;
 import static com.example.util.constant.Constants.BY_ID_MESSAGE;
-import static com.example.util.constant.Constants.BY_NAME_MESSAGE;
 import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -41,12 +40,6 @@ public class CommonGroupService implements GroupService {
     public Group findById(Long id) {
         return groupRepository.findById(id)
                 .orElseThrow(() -> new NotFoundEntityException(BY_ID_MESSAGE));
-    }
-
-    @Override
-    public Group findByName(String name) {
-        return groupRepository.findByName(name)
-                .orElseThrow(() -> new NotFoundEntityException(BY_NAME_MESSAGE));
     }
 
     @Override
