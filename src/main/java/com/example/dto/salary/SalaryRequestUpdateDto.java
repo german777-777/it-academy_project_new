@@ -8,9 +8,7 @@ public record SalaryRequestUpdateDto(
         Long id,
         @NotNull
         Long teacherId,
-        @NotNull
         LocalDate dateOfIssue,
-        @NotNull
         Integer count
 ) {
 }

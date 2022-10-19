@@ -14,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.example.util.constant.Constants.ALREADY_EXISTING_WITH_NAME_MESSAGE;
+import static com.example.util.constant.Constants.BY_ID_MESSAGE;
+import static com.example.util.constant.Constants.BY_NAME_MESSAGE;
+import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
@@ -28,7 +32,7 @@ public class CommonGroupService implements GroupService {
     @Transactional
     public Group save(Group group) {
         if (TRUE.equals(groupRepository.ifExistsByName(group.getName()))) {
-            throw new CreateEntityException(" cause already existing by this name");
+            throw new CreateEntityException(ALREADY_EXISTING_WITH_NAME_MESSAGE);
         }
         return groupRepository.save(group);
     }
@@ -36,13 +40,13 @@ public class CommonGroupService implements GroupService {
     @Override
     public Group findById(Long id) {
         return groupRepository.findById(id)
-                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+                .orElseThrow(() -> new NotFoundEntityException(BY_ID_MESSAGE));
     }
 
     @Override
     public Group findByName(String name) {
         return groupRepository.findByName(name)
-                .orElseThrow(() -> new NotFoundEntityException(" by name"));
+                .orElseThrow(() -> new NotFoundEntityException(BY_NAME_MESSAGE));
     }
 
     @Override
@@ -69,7 +73,7 @@ public class CommonGroupService implements GroupService {
     @Transactional(isolation = REPEATABLE_READ)
     public Group update(Group group) {
         if (TRUE.equals(groupRepository.ifExistsByName(group.getName()))) {
-            throw new CreateEntityException(" cause already existing by this name");
+            throw new CreateEntityException(ALREADY_EXISTING_WITH_NAME_MESSAGE);
         }
         return groupRepository.save(group);
     }
@@ -77,7 +81,7 @@ public class CommonGroupService implements GroupService {
     @Override
     public boolean delete(Long id) {
         if (FALSE.equals(groupRepository.ifExistsById(id))) {
-            throw new DeleteEntityException(" cause not exists by this id");
+            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID);
         }
         groupRepository.deleteById(id);
         return true;

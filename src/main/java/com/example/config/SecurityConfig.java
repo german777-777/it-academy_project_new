@@ -11,19 +11,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static com.example.util.constant.Constants.PUBLIC_URLS;
+
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-    private static final String[] PUBLIC_URLS = {
-            "/api/system/**",
-            "/swagger-ui/**",
-            "/v2/api-docs/**",
-            "/v3/api-docs/**",
-            "/swagger-resources/**",
-            "/webjars/**"
-    };
     private final JwtConfigurer configurer;
     private final CommonAuthenticationManager authenticationManager;
 

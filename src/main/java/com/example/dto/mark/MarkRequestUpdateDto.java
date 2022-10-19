@@ -10,9 +10,7 @@ public record MarkRequestUpdateDto(
         Long studentId,
         @NotNull
         Long subjectId,
-        @NotNull
         LocalDate dateOfIssue,
-        @NotNull
         Integer count
 ) {
 }

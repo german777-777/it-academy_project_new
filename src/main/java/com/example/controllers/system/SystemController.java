@@ -24,7 +24,7 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/api/system")
+@RequestMapping("/api/v1/system")
 @RequiredArgsConstructor
 public class SystemController {
     private final PersonFacade personFacade;

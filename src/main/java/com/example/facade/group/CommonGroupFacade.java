@@ -34,16 +34,19 @@ public class CommonGroupFacade implements GroupFacade {
     }
 
     @Override
+    @Validate
     public GroupResponseStudentsDto getStudentsByGroupId(Long groupId) {
         return groupMapper.toStudentsDto(groupService.findById(groupId));
     }
 
     @Override
+    @Validate
     public GroupResponseTeachersDto getTeachersByGroupId(Long groupId) {
         return groupMapper.toTeachersDto(groupService.findById(groupId));
     }
 
     @Override
+    @Validate
     public GroupResponseSubjectsDto getSubjectsByGroupId(Long groupId) {
         return groupMapper.toSubjectsDto(groupService.findById(groupId));
     }

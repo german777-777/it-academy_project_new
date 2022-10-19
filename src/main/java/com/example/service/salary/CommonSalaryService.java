@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.example.util.constant.Constants.BY_ID_MESSAGE;
+import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID;
 import static java.lang.Boolean.FALSE;
 import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
 
@@ -31,7 +33,7 @@ public class CommonSalaryService implements SalaryService {
     @Override
     public Salary findById(Long id) {
         return salaryRepository.findById(id)
-                .orElseThrow(() -> new NotFoundEntityException(" by id"));
+                .orElseThrow(() -> new NotFoundEntityException(BY_ID_MESSAGE));
     }
 
     @Override
@@ -54,7 +56,7 @@ public class CommonSalaryService implements SalaryService {
     @Override
     public boolean delete(Long id) {
         if (FALSE.equals(salaryRepository.ifExistsById(id))) {
-            throw new DeleteEntityException(" cause not exists with this id");
+            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID);
         }
         salaryRepository.deleteById(id);
         return true;
