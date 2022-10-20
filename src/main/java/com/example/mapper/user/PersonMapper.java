@@ -2,10 +2,8 @@ package com.example.mapper.user;
 
 import com.example.dto.user.person.PersonResponseDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
-import com.example.exceptions.CreateEntityException;
 import com.example.model.users.Person;
 import com.example.model.users.Student;
-import com.example.model.users.Teacher;
 import com.example.model.users.credentials.Credentials;
 import com.example.model.users.roles.Role;
 import org.mapstruct.Mapper;

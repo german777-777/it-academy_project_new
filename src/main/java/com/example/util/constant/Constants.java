@@ -16,9 +16,9 @@ public class Constants {
     public static final String[] PUBLIC_URL_NON_REST = {
             "/",
             "/api/start/",
+            "/api/system/**",
             "/index.jsp",
             "/login.jsp",
-            "/api/system/**",
             "/registration.jsp"
     };
 
@@ -32,4 +32,5 @@ public class Constants {
 
     public static final String STUDENT_ROLE_NAME = "STUDENT";
     public static final String TEACHER_ROLE_NAME = "TEACHER";
+    public static final String ADMIN_ROLE_NAME = "ADMIN";
 }

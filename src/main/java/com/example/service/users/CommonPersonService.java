@@ -15,9 +15,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.util.constant.Constants.ADMIN_ROLE_NAME;
 import static com.example.util.constant.Constants.ALREADY_EXISTING_WITH_LOGIN_MESSAGE;
 import static com.example.util.constant.Constants.BY_ID_MESSAGE;
 import static com.example.util.constant.Constants.BY_LOGIN_MESSAGE;
@@ -106,15 +106,16 @@ public class CommonPersonService implements PersonService {
     }
 
     private List<Role> getPersonRoles(Person person) {
-        List<Role> personRoles = new ArrayList<>(1);
+        Role personRole;
 
         if (person.getClass().equals(Student.class)) {
-            Role studentRole = roleService.findByName(STUDENT_ROLE_NAME);
-            personRoles.add(studentRole);
+            personRole = roleService.findByName(STUDENT_ROLE_NAME);
+        } else if (person.getClass().equals(Teacher.class)) {
+            personRole = roleService.findByName(TEACHER_ROLE_NAME);
         } else {
-            Role teacherRole = roleService.findByName(TEACHER_ROLE_NAME);
-            personRoles.add(teacherRole);
+            personRole = roleService.findByName(ADMIN_ROLE_NAME);
         }
-        return personRoles;
+
+        return List.of(personRole);
     }
 }
