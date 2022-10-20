@@ -1,23 +1,26 @@
 package com.example.facade.user;
 
+import com.example.dto.user.person.PersonRequestUpdateDto;
+import com.example.dto.user.person.PersonResponseDto;
+import com.example.dto.user.system.PersonRequestCreateDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface PersonFacade<RequestCreateDto, RequestUpdateDto, ResponseDto> extends UserDetailsService {
-    void savePerson(RequestCreateDto personRequestCreateDto);
+public interface PersonFacade extends UserDetailsService {
+    void savePerson(PersonRequestCreateDto personRequestCreateDto);
 
-    ResponseDto getPersonById(Long id);
+    PersonResponseDto getPersonById(Long id);
 
-    List<ResponseDto> getStudentsByGroupId(Long groupId);
+    List<PersonResponseDto> getStudentsByGroupId(Long groupId);
 
-    List<ResponseDto> getTeachersByGroupId(Long groupId);
+    List<PersonResponseDto> getTeachersByGroupId(Long groupId);
 
-    List<ResponseDto> getAllStudents();
+    List<PersonResponseDto> getAllStudents();
 
-    List<ResponseDto> getAllTeachers();
+    List<PersonResponseDto> getAllTeachers();
 
-    void updatePerson(RequestUpdateDto personRequestUpdateDto);
+    void updatePerson(PersonRequestUpdateDto personRequestUpdateDto);
 
     void deletePerson(Long id);
 }

@@ -1,8 +1,8 @@
 package com.example.facade.subject;
 
-import com.example.dto.rest.subject.SubjectRequestCreateDto;
-import com.example.dto.rest.subject.SubjectRequestUpdateDto;
-import com.example.dto.rest.subject.SubjectResponseDto;
+import com.example.dto.subject.SubjectRequestCreateDto;
+import com.example.dto.subject.SubjectRequestUpdateDto;
+import com.example.dto.subject.SubjectResponseDto;
 
 import java.util.List;
 

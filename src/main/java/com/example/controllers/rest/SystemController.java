@@ -1,12 +1,10 @@
 package com.example.controllers.rest;
 
-import com.example.dto.rest.credentials.CredentialsRequestDto;
-import com.example.dto.rest.user.system.PersonRequestCreateDto;
+import com.example.dto.credentials.CredentialsRequestDto;
+import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.facade.user.PersonFacade;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
-@RestController
+@RestController(value = "restSystemController")
 @RequestMapping("/api/v1/system")
 public class SystemController {
     private final PersonFacade personFacade;
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
-    public SystemController(@Qualifier("restPersonFacade") PersonFacade personFacade, CommonAuthenticationManager authenticationManager, JwtProvider provider) {
+    public SystemController(PersonFacade personFacade, CommonAuthenticationManager authenticationManager, JwtProvider provider) {
         this.personFacade = personFacade;
         this.authenticationManager = authenticationManager;
         this.provider = provider;
@@ -44,8 +42,8 @@ public class SystemController {
 
     @PostMapping("/login")
     public ResponseEntity<String[]> login(@RequestBody CredentialsRequestDto credentialsDto) {
-        String login = credentialsDto.login();
-        String password = credentialsDto.password();
+        String login = credentialsDto.getLogin();
+        String password = credentialsDto.getPassword();
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
 

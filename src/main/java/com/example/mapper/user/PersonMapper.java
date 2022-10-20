@@ -1,7 +1,7 @@
 package com.example.mapper.user;
 
-import com.example.dto.rest.user.person.PersonResponseDto;
-import com.example.dto.rest.user.system.PersonRequestCreateDto;
+import com.example.dto.user.person.PersonResponseDto;
+import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.exceptions.CreateEntityException;
 import com.example.model.users.Person;
 import com.example.model.users.Student;
@@ -20,17 +20,13 @@ import java.util.List;
 public interface PersonMapper {
 
     default Person toEntity(PersonRequestCreateDto personRequestCreateDto) {
-        Person person = switch (personRequestCreateDto.role()) {
-            case "Student" -> new Student();
-            case "Teacher" -> new Teacher();
-            default -> throw new CreateEntityException(" cause not correct role");
-        };
+        Person person = new Student();
 
-        person.setFirstName(personRequestCreateDto.firstName());
-        person.setLastName(personRequestCreateDto.lastName());
-        person.setPatronymic(personRequestCreateDto.patronymic());
-        person.setBirthDate(personRequestCreateDto.birthDate());
-        person.setCredentials(new Credentials(personRequestCreateDto.login(), personRequestCreateDto.password()));
+        person.setFirstName(personRequestCreateDto.getFirstName());
+        person.setLastName(personRequestCreateDto.getLastName());
+        person.setPatronymic(personRequestCreateDto.getPatronymic());
+        person.setBirthDate(personRequestCreateDto.getBirthDate());
+        person.setCredentials(new Credentials(personRequestCreateDto.getLogin(), personRequestCreateDto.getPassword()));
 
         return person;
     }

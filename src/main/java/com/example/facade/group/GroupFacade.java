@@ -1,15 +1,19 @@
 package com.example.facade.group;
 
+import com.example.dto.group.GroupRequestCreateDto;
+import com.example.dto.group.GroupRequestUpdateDto;
+import com.example.dto.group.GroupResponseDto;
+
 import java.util.List;
 
-public interface GroupFacade<RequestCreateDto, RequestUpdateDto, ResponseDto> {
-    void saveGroup(RequestCreateDto groupRequestCreateDto);
+public interface GroupFacade {
+    void saveGroup(GroupRequestCreateDto groupRequestCreateDto);
 
-    ResponseDto getGroupById(Long id);
+    GroupResponseDto getGroupById(Long id);
 
-    List<ResponseDto> getAllGroups();
+    List<GroupResponseDto> getAllGroups();
 
-    void updateGroup(RequestUpdateDto groupRequestUpdateDto);
+    void updateGroup(GroupRequestUpdateDto groupRequestUpdateDto);
 
     void delete(Long id);
 }

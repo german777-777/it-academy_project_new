@@ -1,8 +1,8 @@
 package com.example.mapper.subject;
 
-import com.example.dto.rest.subject.SubjectRequestCreateDto;
-import com.example.dto.rest.subject.SubjectRequestUpdateDto;
-import com.example.dto.rest.subject.SubjectResponseDto;
+import com.example.dto.subject.SubjectRequestCreateDto;
+import com.example.dto.subject.SubjectRequestUpdateDto;
+import com.example.dto.subject.SubjectResponseDto;
 import com.example.model.subject.Subject;
 import org.mapstruct.Mapper;
 

@@ -1,8 +1,8 @@
 package com.example.mapper.group;
 
-import com.example.dto.rest.group.GroupRequestCreateDto;
-import com.example.dto.rest.group.GroupRequestUpdateDto;
-import com.example.dto.rest.group.GroupResponseDto;
+import com.example.dto.group.GroupRequestCreateDto;
+import com.example.dto.group.GroupRequestUpdateDto;
+import com.example.dto.group.GroupResponseDto;
 import com.example.model.group.Group;
 import org.mapstruct.Mapper;
 

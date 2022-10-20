@@ -1,8 +1,8 @@
 package com.example.facade.salary;
 
-import com.example.dto.rest.salary.SalaryRequestCreateDto;
-import com.example.dto.rest.salary.SalaryRequestUpdateDto;
-import com.example.dto.rest.salary.SalaryResponseDto;
+import com.example.dto.salary.SalaryRequestCreateDto;
+import com.example.dto.salary.SalaryRequestUpdateDto;
+import com.example.dto.salary.SalaryResponseDto;
 
 import java.util.List;
 

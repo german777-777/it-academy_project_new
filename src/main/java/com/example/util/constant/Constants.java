@@ -15,6 +15,7 @@ public class Constants {
 
     public static final String[] PUBLIC_URL_NON_REST = {
             "/",
+            "/api/start/",
             "/index.jsp",
             "/login.jsp",
             "/api/system/**",

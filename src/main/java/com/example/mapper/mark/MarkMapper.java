@@ -1,7 +1,7 @@
 package com.example.mapper.mark;
 
-import com.example.dto.rest.mark.MarkRequestCreateDto;
-import com.example.dto.rest.mark.MarkResponseDto;
+import com.example.dto.mark.MarkRequestCreateDto;
+import com.example.dto.mark.MarkResponseDto;
 import com.example.model.mark.Mark;
 import com.example.service.subjects.SubjectService;
 import org.mapstruct.Mapper;
@@ -15,7 +15,7 @@ public abstract class MarkMapper {
     @Autowired
     protected SubjectService subjectService;
 
-    @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestCreateDto.subjectId()))")
+    @Mapping(target = "subject", expression = "java(subjectService.findById(markRequestCreateDto.getSubjectId()))")
     public abstract Mark toEntity(MarkRequestCreateDto markRequestCreateDto);
 
     @Mapping(target = "subjectName", expression = "java(mark.getSubject().getName())")
