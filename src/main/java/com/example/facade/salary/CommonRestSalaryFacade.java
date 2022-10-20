@@ -15,9 +15,9 @@ import java.util.List;
 
 import static com.example.util.constant.Constants.NOT_VALID_DATA_MESSAGE;
 
-@Facade
+@Facade(value = "restSalaryFacade")
 @RequiredArgsConstructor
-public class CommonSalaryFacade implements SalaryFacade {
+public class CommonRestSalaryFacade implements SalaryFacade {
 
     private final SalaryService salaryService;
     private final SalaryMapper salaryMapper;

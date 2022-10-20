@@ -5,17 +5,16 @@ import com.example.annotation.Validate;
 import com.example.dto.rest.group.GroupRequestCreateDto;
 import com.example.dto.rest.group.GroupRequestUpdateDto;
 import com.example.dto.rest.group.GroupResponseDto;
-import com.example.dto.rest.subject.SubjectResponseDto;
-import com.example.dto.rest.user.person.PersonResponseDto;
 import com.example.mapper.group.GroupMapper;
+import com.example.model.group.Group;
 import com.example.service.group.GroupService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Facade
+@Facade(value = "restGroupFacade")
 @RequiredArgsConstructor
-public class CommonGroupFacade implements GroupFacade {
+public class CommonRestGroupFacade implements GroupFacade<GroupRequestCreateDto, GroupRequestUpdateDto, GroupResponseDto> {
 
     private final GroupService groupService;
     private final GroupMapper groupMapper;
@@ -29,21 +28,6 @@ public class CommonGroupFacade implements GroupFacade {
     @Override
     public GroupResponseDto getGroupById(Long id) {
         return groupMapper.toDto(groupService.findById(id));
-    }
-
-    @Override
-    public List<PersonResponseDto> getStudentsByGroupId(Long groupId) {
-        return groupMapper.toStudentsDtos(groupService.findAllStudentsByGroupId(groupId));
-    }
-
-    @Override
-    public List<PersonResponseDto> getTeachersByGroupId(Long groupId) {
-        return groupMapper.toTeachersDtos(groupService.findAllTeachersByGroupId(groupId));
-    }
-
-    @Override
-    public List<SubjectResponseDto> getSubjectsByGroupId(Long groupId) {
-        return groupMapper.toSubjectsDtos(groupService.findAllSubjectsByGroupId(groupId));
     }
 
     @Override

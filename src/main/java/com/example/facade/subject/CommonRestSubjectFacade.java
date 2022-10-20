@@ -6,16 +6,18 @@ import com.example.dto.rest.subject.SubjectRequestCreateDto;
 import com.example.dto.rest.subject.SubjectRequestUpdateDto;
 import com.example.dto.rest.subject.SubjectResponseDto;
 import com.example.mapper.subject.SubjectMapper;
+import com.example.service.group.GroupService;
 import com.example.service.subjects.SubjectService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-@Facade
+@Facade(value = "restSubjectFacade")
 @RequiredArgsConstructor
-public class CommonSubjectFacade implements SubjectFacade {
+public class CommonRestSubjectFacade implements SubjectFacade {
 
     private final SubjectService subjectService;
+    private final GroupService groupService;
     private final SubjectMapper subjectMapper;
 
     @Override
@@ -32,6 +34,11 @@ public class CommonSubjectFacade implements SubjectFacade {
     @Override
     public SubjectResponseDto getSubjectByName(String name) {
         return subjectMapper.toDto(subjectService.findByName(name));
+    }
+
+    @Override
+    public List<SubjectResponseDto> getSubjectsByGroupId(Long groupId) {
+        return subjectMapper.toListDtos(groupService.findById(groupId).getSubjects());
     }
 
     @Override

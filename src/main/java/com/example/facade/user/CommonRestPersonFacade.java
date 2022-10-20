@@ -8,6 +8,7 @@ import com.example.dto.rest.user.system.PersonRequestCreateDto;
 import com.example.exceptions.ValidationException;
 import com.example.mapper.user.PersonMapper;
 import com.example.model.users.Person;
+import com.example.service.group.GroupService;
 import com.example.service.users.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +18,11 @@ import java.util.List;
 
 import static com.example.util.constant.Constants.NOT_VALID_DATA_MESSAGE;
 
-@Facade
+@Facade(value = "restPersonFacade")
 @RequiredArgsConstructor
-public class CommonPersonFacade implements PersonFacade {
+public class CommonRestPersonFacade implements PersonFacade<PersonRequestCreateDto, PersonRequestUpdateDto, PersonResponseDto> {
     private final PersonService personService;
+    private final GroupService groupService;
     private final PersonMapper personMapper;
 
     @Override
@@ -32,6 +34,16 @@ public class CommonPersonFacade implements PersonFacade {
     @Override
     public PersonResponseDto getPersonById(Long id) {
         return personMapper.toDto(personService.findById(id));
+    }
+
+    @Override
+    public List<PersonResponseDto> getStudentsByGroupId(Long groupId) {
+        return personMapper.toListDtos(groupService.findById(groupId).getStudents());
+    }
+
+    @Override
+    public List<PersonResponseDto> getTeachersByGroupId(Long groupId) {
+        return personMapper.toListDtos(groupService.findById(groupId).getTeachers());
     }
 
     @Override

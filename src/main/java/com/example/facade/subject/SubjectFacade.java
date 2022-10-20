@@ -12,7 +12,9 @@ public interface SubjectFacade {
     SubjectResponseDto getSubjectById(Long id);
 
     SubjectResponseDto getSubjectByName(String name);
-    
+
+    List<SubjectResponseDto> getSubjectsByGroupId(Long groupId);
+
     List<SubjectResponseDto> getAllSubjects();
     
     void updateSubject(SubjectRequestUpdateDto subjectRequestUpdateDto);

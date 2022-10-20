@@ -9,9 +9,13 @@
 <body>
 
 <form:form action="/api/system/login" method="post" modelAttribute="credentialsRequestDto">
-    <form:label path="login">Login</form:label> <form:input path="login"/>
-    <form:label path="password">Password</form:label> <form:input path="password"/>
-    <input type="submit" value="Log in">
+    <form:label path="login">Login</form:label>
+    <form:input path="login"/>
+    <form:label path="password">Password</form:label>
+    <form:input path="password"/>
+    <br>
+
+    <input style="text-align: center; align-content: center; display: block" type="submit" value="Log in">
 </form:form>
 
 </body>

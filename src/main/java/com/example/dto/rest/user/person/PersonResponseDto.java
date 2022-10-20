@@ -1,6 +1,5 @@
 package com.example.dto.rest.user.person;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;

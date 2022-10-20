@@ -15,9 +15,9 @@ import java.util.List;
 
 import static com.example.util.constant.Constants.NOT_VALID_DATA_MESSAGE;
 
-@Facade
+@Facade(value = "restMarkFacade")
 @RequiredArgsConstructor
-public class CommonMarkFacade implements MarkFacade {
+public class CommonRestMarkFacade implements MarkFacade {
 
     private final MarkService markService;
     private final MarkMapper markMapper;
