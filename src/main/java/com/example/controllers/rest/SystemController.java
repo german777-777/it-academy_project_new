@@ -5,6 +5,7 @@ import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.facade.user.PersonFacade;
 import com.example.security.jwt.JwtProvider;
 import com.example.security.manager.CommonAuthenticationManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,25 +24,20 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController(value = "restSystemController")
 @RequestMapping("/api/v1/system")
+@RequiredArgsConstructor
 public class SystemController {
     private final PersonFacade personFacade;
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
 
-    public SystemController(PersonFacade personFacade, CommonAuthenticationManager authenticationManager, JwtProvider provider) {
-        this.personFacade = personFacade;
-        this.authenticationManager = authenticationManager;
-        this.provider = provider;
-    }
-
     @PostMapping("/registration")
     public ResponseEntity<String> registration(@RequestBody PersonRequestCreateDto personDto) {
         personFacade.savePerson(personDto);
-        return ResponseEntity.ok("Registration was passed successfully!");
+        return ResponseEntity.ok("Registration was successfully passed!");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String[]> login(@RequestBody CredentialsRequestDto credentialsDto) {
+    public ResponseEntity<String> login(@RequestBody CredentialsRequestDto credentialsDto) {
         String login = credentialsDto.getLogin();
         String password = credentialsDto.getPassword();
 
@@ -49,7 +45,7 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        return new ResponseEntity<>(new String[]{"Authentication & Authorization were successfully passed!", token}, OK);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/logout")
