@@ -29,4 +29,7 @@ public class Constants {
     public static final String ALREADY_EXISTING_WITH_LOGIN_MESSAGE = " cause already existing with this login";
     public static final String NOT_EXISTING_WITH_THIS_ID = " cause not exists with this id";
     public static final String NOT_VALID_DATA_MESSAGE = " cause not valid data";
+
+    public static final String STUDENT_ROLE_NAME = "STUDENT";
+    public static final String TEACHER_ROLE_NAME = "TEACHER";
 }
