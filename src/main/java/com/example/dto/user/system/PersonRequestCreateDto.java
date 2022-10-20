@@ -1,5 +1,7 @@
 package com.example.dto.user.system;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -12,6 +14,7 @@ public class PersonRequestCreateDto {
     @NotBlank
     private String patronymic;
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     @NotBlank
     private String login;
