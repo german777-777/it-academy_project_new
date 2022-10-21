@@ -78,6 +78,12 @@ public class JwtProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
+        /* Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            if (cookie.getName().equals("Authorization")) {
+                return cookie.getValue();
+            }
+        } */
         return request.getHeader(header);
     }
 }

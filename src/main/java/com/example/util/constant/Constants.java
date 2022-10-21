@@ -30,7 +30,15 @@ public class Constants {
     public static final String NOT_EXISTING_WITH_THIS_ID = " cause not exists with this id";
     public static final String NOT_VALID_DATA_MESSAGE = " cause not valid data";
 
+
     public static final String STUDENT_ROLE_NAME = "STUDENT";
     public static final String TEACHER_ROLE_NAME = "TEACHER";
     public static final String ADMIN_ROLE_NAME = "ADMIN";
+
+
+    public static final String INDEX_PAGE = "index";
+    public static final String MESSAGE_PARAMETER = "message";
+    public static final String LOGOUT_MESSAGE_VALUE = "You are logged out!";
+    public static final String NOT_LOGOUT_MESSAGE_VALUE = "You are not logged out!";
+    public static final String REGISTRATION_SUCCESSFUL_MESSAGE_VALUE = "Registration was successfully passed!";
 }

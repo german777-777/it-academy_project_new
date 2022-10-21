@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import static com.example.util.constant.Constants.LOGOUT_MESSAGE_VALUE;
+import static com.example.util.constant.Constants.NOT_LOGOUT_MESSAGE_VALUE;
+import static com.example.util.constant.Constants.REGISTRATION_SUCCESSFUL_MESSAGE_VALUE;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -33,7 +36,7 @@ public class SystemController {
     @PostMapping("/registration")
     public ResponseEntity<String> registration(@RequestBody PersonRequestCreateDto personDto) {
         personFacade.savePerson(personDto);
-        return ResponseEntity.ok("Registration was successfully passed!");
+        return ResponseEntity.ok(REGISTRATION_SUCCESSFUL_MESSAGE_VALUE);
     }
 
     @PostMapping("/login")
@@ -55,9 +58,9 @@ public class SystemController {
 
         if (logoutHandler.isInvalidateHttpSession() &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
-            return new ResponseEntity<>("You are logged out!", OK);
+            return new ResponseEntity<>(LOGOUT_MESSAGE_VALUE, OK);
         } else {
-            return new ResponseEntity<>("You are not logged out!", INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(NOT_LOGOUT_MESSAGE_VALUE, INTERNAL_SERVER_ERROR);
         }
     }
 }

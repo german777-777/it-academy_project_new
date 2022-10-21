@@ -22,6 +22,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.example.util.constant.Constants.INDEX_PAGE;
+import static com.example.util.constant.Constants.LOGOUT_MESSAGE_VALUE;
+import static com.example.util.constant.Constants.MESSAGE_PARAMETER;
+import static com.example.util.constant.Constants.NOT_LOGOUT_MESSAGE_VALUE;
+import static com.example.util.constant.Constants.REGISTRATION_SUCCESSFUL_MESSAGE_VALUE;
+
 @Controller(value = "nonRestSystemController")
 @RequestMapping("api/system")
 @RequiredArgsConstructor
@@ -45,7 +51,7 @@ public class SystemController {
 
     @PostMapping(value = "/login")
     public ModelAndView login(@ModelAttribute("credentialRequestDto") CredentialsRequestDto credentialsRequestDto) {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView(INDEX_PAGE);
 
         String login = credentialsRequestDto.getLogin();
         String password = credentialsRequestDto.getPassword();
@@ -54,18 +60,18 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        modelAndView.addObject("message", "Authentication & Authorization were successfully passed!");
+        modelAndView.addObject(MESSAGE_PARAMETER, "Authentication & Authorization were successfully passed!");
 
         return modelAndView;
     }
 
     @PostMapping("/registration")
     public ModelAndView registration(@ModelAttribute("personCreateRequestDto") PersonRequestCreateDto personRequestCreateDto) {
-        ModelAndView modelAndView = new ModelAndView("index");
+        ModelAndView modelAndView = new ModelAndView(INDEX_PAGE);
 
         personFacade.savePerson(personRequestCreateDto);
 
-        modelAndView.addObject("message", "Registration was successfully passed!");
+        modelAndView.addObject(MESSAGE_PARAMETER, REGISTRATION_SUCCESSFUL_MESSAGE_VALUE);
 
         return modelAndView;
     }
@@ -79,9 +85,10 @@ public class SystemController {
 
         if (logoutHandler.isInvalidateHttpSession() &&
                 SecurityContextHolder.getContext().getAuthentication() == null) {
-            modelAndView.setViewName("index");
-            modelAndView.addObject("message", "You are logged out!");
+            modelAndView.setViewName(INDEX_PAGE);
+            modelAndView.addObject(MESSAGE_PARAMETER, LOGOUT_MESSAGE_VALUE);
         } else {
+            request.setAttribute(MESSAGE_PARAMETER, NOT_LOGOUT_MESSAGE_VALUE);
             response.sendRedirect(request.getRequestURI());
         }
 
