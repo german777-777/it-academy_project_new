@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import static com.example.util.constant.Constants.BY_PASSWORD_MESSAGE;
+
 @Component
 @RequiredArgsConstructor
 public class CommonAuthenticationManager implements AuthenticationManager {
@@ -21,7 +23,7 @@ public class CommonAuthenticationManager implements AuthenticationManager {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         UserDetails userDetails = personFacade.loadUserByUsername(authentication.getPrincipal().toString());
         if (!passwordEncoder.matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
-            throw new NotFoundEntityException(" cause not correct password");
+            throw new NotFoundEntityException(BY_PASSWORD_MESSAGE);
         }
         return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(), userDetails.getAuthorities());
     }
