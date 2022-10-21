@@ -4,6 +4,6 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 public class UpdateEntityException extends ApiException {
     public UpdateEntityException(Object entity) {
-        super(BAD_REQUEST, "Wasn't updated", entity);
+        super(BAD_REQUEST, "entity.not_updated", entity);
     }
 }

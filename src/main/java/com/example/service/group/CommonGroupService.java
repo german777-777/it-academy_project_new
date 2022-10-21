@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.example.util.constant.Constants.ALREADY_EXISTING_WITH_NAME_MESSAGE;
 import static com.example.util.constant.Constants.BY_ID_MESSAGE;
-import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID;
+import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID_MESSAGE;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import static org.springframework.transaction.annotation.Isolation.REPEATABLE_READ;
@@ -74,7 +74,7 @@ public class CommonGroupService implements GroupService {
     @Override
     public boolean delete(Long id) {
         if (FALSE.equals(groupRepository.ifExistsById(id))) {
-            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID);
+            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID_MESSAGE);
         }
         groupRepository.deleteById(id);
         return true;

@@ -17,7 +17,7 @@ public class ValidationException extends ApiException {
     }
 
     public ValidationException(Set<ConstraintViolation<Object>> violations) {
-        super(BAD_REQUEST, "Not correct data");
+        super(BAD_REQUEST, "valid.not_correct");
         this.violations = violations;
     }
 

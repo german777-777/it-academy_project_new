@@ -21,7 +21,7 @@ import static com.example.util.constant.Constants.ADMIN_ROLE_NAME;
 import static com.example.util.constant.Constants.ALREADY_EXISTING_WITH_LOGIN_MESSAGE;
 import static com.example.util.constant.Constants.BY_ID_MESSAGE;
 import static com.example.util.constant.Constants.BY_LOGIN_MESSAGE;
-import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID;
+import static com.example.util.constant.Constants.NOT_EXISTING_WITH_THIS_ID_MESSAGE;
 import static com.example.util.constant.Constants.STUDENT_ROLE_NAME;
 import static com.example.util.constant.Constants.TEACHER_ROLE_NAME;
 import static java.lang.Boolean.FALSE;
@@ -99,7 +99,7 @@ public class CommonPersonService implements PersonService {
     @Override
     public boolean delete(Long id) {
         if (FALSE.equals(personRepository.ifExistsById(id))) {
-            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID);
+            throw new DeleteEntityException(NOT_EXISTING_WITH_THIS_ID_MESSAGE);
         }
         personRepository.deleteById(id);
         return true;

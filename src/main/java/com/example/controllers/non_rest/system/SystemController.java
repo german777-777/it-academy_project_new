@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.example.util.constant.Constants.AUTHENTICATION_AND_AUTHORIZATION_SUCCESSFUL_MESSAGE_VALUE;
 import static com.example.util.constant.Constants.INDEX_PAGE;
 import static com.example.util.constant.Constants.LOGOUT_MESSAGE_VALUE;
 import static com.example.util.constant.Constants.MESSAGE_PARAMETER;
@@ -60,7 +61,7 @@ public class SystemController {
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
-        modelAndView.addObject(MESSAGE_PARAMETER, "Authentication & Authorization were successfully passed!");
+        modelAndView.addObject(MESSAGE_PARAMETER, AUTHENTICATION_AND_AUTHORIZATION_SUCCESSFUL_MESSAGE_VALUE);
 
         return modelAndView;
     }
