@@ -28,11 +28,11 @@ public class SecurityConfig {
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authenticationManager(authenticationManager)
-                .authorizeRequests()
-                .antMatchers(PUBLIC_URLS_REST).permitAll()
-                .antMatchers(PUBLIC_URL_NON_REST).permitAll()
-                .anyRequest().authenticated()
+                    .authenticationManager(authenticationManager)
+                    .authorizeRequests()
+                        .antMatchers(PUBLIC_URLS_REST).permitAll()
+                        .antMatchers(PUBLIC_URL_NON_REST).permitAll()
+                        .anyRequest().authenticated()
                 .and()
                 .apply(configurer);
         return httpSecurity.build();

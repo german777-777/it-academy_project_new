@@ -24,6 +24,11 @@
 
         <insert tableName="roles_authorities">
             <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'ADMIN_AUTHORITY')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
             <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'CREATE_USERS')"/>
         </insert>
 
@@ -128,6 +133,11 @@
         </insert>
 
         <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'TEACHER_AUTHORITY')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
             <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
             <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'ADD_STUDENT_IN_GROUP')"/>
         </insert>
@@ -195,6 +205,11 @@
         <insert tableName="roles_authorities">
             <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'TEACHER')"/>
             <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'READ_SUBJECTS_IN_GROUP')"/>
+        </insert>
+
+        <insert tableName="roles_authorities">
+            <column name="role_id" valueComputed="(SELECT r.id FROM roles r WHERE r.name = 'ADMIN')"/>
+            <column name="authority_id" valueComputed="(SELECT a.id FROM authorities a WHERE a.name = 'STUDENT_AUTHORITY')"/>
         </insert>
 
         <insert tableName="roles_authorities">

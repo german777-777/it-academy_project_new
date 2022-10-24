@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h1>Welcome to Education System Management!</h1>
+<h1>Welcome to Education Management System!</h1>
 
 <h2>
     <c:if test="${not empty message}">

@@ -11,6 +11,10 @@
             </preConditions>
 
             <insert tableName="authorities">
+                <column name="name">ADMIN_AUTHORITY</column>
+            </insert>
+
+            <insert tableName="authorities">
                 <column name="name">CREATE_USERS</column>
             </insert>
 
@@ -91,6 +95,10 @@
             </insert>
 
             <insert tableName="authorities">
+                <column name="name">TEACHER_AUTHORITY</column>
+            </insert>
+
+            <insert tableName="authorities">
                 <column name="name">ADD_STUDENT_IN_GROUP</column>
             </insert>
             
@@ -128,6 +136,10 @@
 
             <insert tableName="authorities">
                 <column name="name">READ_TEACHER_SALARIES</column>
+            </insert>
+
+            <insert tableName="authorities">
+                <column name="name">STUDENT_AUTHORITY</column>
             </insert>
 
             <insert tableName="authorities">

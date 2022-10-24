@@ -35,9 +35,14 @@ public class Constants {
     public static final String STUDENT_ROLE_NAME = "STUDENT";
     public static final String TEACHER_ROLE_NAME = "TEACHER";
     public static final String ADMIN_ROLE_NAME = "ADMIN";
+    public static final String ADMIN_AUTHORITY_NAME = "ADMIN_AUTHORITY";
+    public static final String TEACHER_AUTHORITY_NAME = "TEACHER_AUTHORITY";
 
 
     public static final String INDEX_PAGE = "index";
+    public static final String LOGIN_PAGE = "login";
+    public static final String REGISTRATION_PAGE = "registration";
+    public static final String ADMIN_MAIN_PAGE = "admin/admin_main";
     public static final String MESSAGE_PARAMETER = "message";
     public static final String LOGOUT_MESSAGE_VALUE = "You are logged out!";
     public static final String NOT_LOGOUT_MESSAGE_VALUE = "You are not logged out!";

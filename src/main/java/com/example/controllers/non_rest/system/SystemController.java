@@ -1,5 +1,6 @@
 package com.example.controllers.non_rest.system;
 
+import com.example.config.login.LoginSuccessHandler;
 import com.example.dto.credentials.CredentialsRequestDto;
 import com.example.dto.user.system.PersonRequestCreateDto;
 import com.example.facade.user.PersonFacade;
@@ -24,40 +25,46 @@ import java.io.IOException;
 
 import static com.example.util.constant.Constants.AUTHENTICATION_AND_AUTHORIZATION_SUCCESSFUL_MESSAGE_VALUE;
 import static com.example.util.constant.Constants.INDEX_PAGE;
+import static com.example.util.constant.Constants.LOGIN_PAGE;
 import static com.example.util.constant.Constants.LOGOUT_MESSAGE_VALUE;
 import static com.example.util.constant.Constants.MESSAGE_PARAMETER;
 import static com.example.util.constant.Constants.NOT_LOGOUT_MESSAGE_VALUE;
+import static com.example.util.constant.Constants.REGISTRATION_PAGE;
 import static com.example.util.constant.Constants.REGISTRATION_SUCCESSFUL_MESSAGE_VALUE;
 
 @Controller(value = "nonRestSystemController")
-@RequestMapping("api/system")
+@RequestMapping("/api/system")
 @RequiredArgsConstructor
 public class SystemController {
 
     private final PersonFacade personFacade;
     private final CommonAuthenticationManager authenticationManager;
     private final JwtProvider provider;
+    private final LoginSuccessHandler successHandler;
 
     @GetMapping("/login")
     public String goToLoginPage(Model model) {
         model.addAttribute("credentialsRequestDto", new CredentialsRequestDto());
-        return "login";
+        return LOGIN_PAGE;
     }
 
     @GetMapping("/registration")
     public String goToRegistrationPage(Model model) {
         model.addAttribute("personCreateRequestDto", new PersonRequestCreateDto());
-        return "registration";
+        return REGISTRATION_PAGE;
     }
 
     @PostMapping(value = "/login")
     public ModelAndView login(@ModelAttribute("credentialRequestDto") CredentialsRequestDto credentialsRequestDto) {
-        ModelAndView modelAndView = new ModelAndView(INDEX_PAGE);
+        ModelAndView modelAndView = new ModelAndView();
 
         String login = credentialsRequestDto.getLogin();
         String password = credentialsRequestDto.getPassword();
 
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(login, password));
+
+        String successPageAfterLogin = successHandler.getAuthenticationSuccessPage(authentication);
+        modelAndView.setViewName(successPageAfterLogin);
 
         String token = provider.generateToken(authentication.getPrincipal().toString(), authentication.getAuthorities());
 
